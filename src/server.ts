@@ -1,29 +1,26 @@
-
-import express from 'express';
-import { graphqlHTTP } from 'express-graphql';
+import { ApolloServer } from "apollo-server-express";
+import { ApolloServerPluginDrainHttpServer } from "apollo-server-core";
 import environmentVariables from './config/environment-variables';
-import schemas from './schemas';
-import resolvers from './resolvers'
-import { buildSchema } from 'graphql';
+import schemas from "./graphql/schemas";
+import resolvers from "./graphql/resolvers";
+import express from "express";
+import http from "http";
 
-const app = express();
-app.use(express.json())
+async function startApolloServer(typeDefs: any, resolvers: any) {
+  const { port, graphqlPath } = environmentVariables
+  const app = express();
+  const httpServer = http.createServer(app);
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+  }) as any;
+  await server.start();
+  server.applyMiddleware({ app });
+  await new Promise<void>((resolve) =>
+    httpServer.listen({ port }, resolve)
+  );
+  console.log(`🚀 GraphQL API server running at http://localhost:${port}${graphqlPath}`);
+}
 
-app.use(
-  environmentVariables.graphqlPath,
-  graphqlHTTP((request, response) => ({
-    schema: buildSchema(schemas),
-    rootValue: resolvers,
-    graphiql: true,
-    context: {
-      request,
-      response,
-    }
-  })),
-);
-
-app.listen(environmentVariables.port, () =>
-  console.log(
-    `🚀 GraphQL API server running at http://localhost:${environmentVariables.port}/graphql`,
-  ),
-);
+startApolloServer(schemas, resolvers);

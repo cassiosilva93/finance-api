@@ -1,10 +1,8 @@
 const usersMutations = {
   createUser: () => {
-
   },
 
   updateUser: () => {
-
   }
 }
 
