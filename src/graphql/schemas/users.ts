@@ -1,4 +1,4 @@
-import { gql } from 'apollo-server-express'
+import { gql } from 'apollo-server-express';
 
 const users = gql`
   input UserInput {
@@ -11,6 +11,6 @@ const users = gql`
     name: String!
     email: String!
   }
-`
+`;
 
-export default users
+export default users;

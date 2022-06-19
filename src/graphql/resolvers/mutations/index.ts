@@ -1,7 +1,7 @@
 import usersMutations from './users';
 
 const mutations = {
-  ...usersMutations
-}
+  ...usersMutations,
+};
 
-export default mutations
+export default mutations;

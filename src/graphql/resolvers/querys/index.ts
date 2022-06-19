@@ -1,7 +1,7 @@
 import usersQuerys from './users';
 
 const querys = {
-  ...usersQuerys
-}
+  ...usersQuerys,
+};
 
-export default querys
+export default querys;

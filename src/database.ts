@@ -4,4 +4,4 @@ const users = [
   { id: 3, name: 'Mike Doe', email: 'mikedoe@gmail.com' },
 ];
 
-export default users
+export default users;

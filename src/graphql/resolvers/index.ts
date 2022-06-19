@@ -3,11 +3,11 @@ import querys from './querys';
 
 const resolvers = {
   Query: {
-    ...querys
+    ...querys,
   },
   Mutation: {
     ...mutations,
-  }
-}
+  },
+};
 
-export default resolvers
+export default resolvers;
