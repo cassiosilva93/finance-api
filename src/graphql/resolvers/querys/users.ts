@@ -1,10 +1,10 @@
 const usersQuerys = {
   getUser: () => {
-    return { name: 'Cass', email: '1234', id: '1' };
+    console.log('getUser')
   },
 
   getUsers: () => {
-    return [{ name: 'Cass', email: '1234', id: '1' }];
+    console.log('getUsers')
   },
 };
 
