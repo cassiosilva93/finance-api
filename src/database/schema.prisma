@@ -8,8 +8,8 @@ datasource db {
 }
 
 enum TransactionType {
-  DEPOSIT
-  WITHDRAW
+  income
+  outcome
 }
 
 model Transactions {
