@@ -7,8 +7,8 @@ const querys = {
     const getAllTransactionsUseCase = new GetAllTransactionsUseCase(
       transactionRepository,
     );
-
-    return await getAllTransactionsUseCase.run();
+    const transactions = await getAllTransactionsUseCase.run();
+    return transactions;
   },
 };
 

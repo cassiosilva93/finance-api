@@ -7,8 +7,11 @@ interface ITransaction {
 
 export default class Transaction {
   public readonly title: string;
+
   public readonly type: string;
+
   public readonly value: number;
+
   public readonly category: string;
 
   constructor({ title, type, value, category }: ITransaction) {

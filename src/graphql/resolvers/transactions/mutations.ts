@@ -7,8 +7,8 @@ const mutations = {
     const createTransactionUsecase = new CreateTransactionUsecase(
       transactionRepository,
     );
-
-    return await createTransactionUsecase.run(data);
+    const newTransaction = await createTransactionUsecase.run(data);
+    return newTransaction;
   },
 };
 
