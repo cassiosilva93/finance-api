@@ -10,7 +10,7 @@ async function startApolloServer(typeDefs: string, resolvers: any) {
     cache: 'bounded',
   });
   const { url } = await server.listen({ port });
-  console.log(`🚀 server running in ${url}`);
+  console.log(`🚀 GraphQL server running in ${url}`);
 }
 
 export default startApolloServer;

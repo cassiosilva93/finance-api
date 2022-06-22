@@ -19,7 +19,6 @@ export default class PrismaTransactionRepository
         category,
       },
     });
-
     return transaction;
   }
 
