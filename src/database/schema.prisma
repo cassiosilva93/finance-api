@@ -13,11 +13,13 @@ enum TransactionType {
 }
 
 model Transactions {
-  id String @id @default(uuid())
-  title String
-  type TransactionType
-  value Decimal
-  category String
+  id         String          @id @default(uuid())
+  title      String
+  type       TransactionType
+  value      Decimal
+  category   String
+  created_at DateTime        @default(now())
+  updated_at DateTime        @default(now())
 
   @@map("transactions")
 }
