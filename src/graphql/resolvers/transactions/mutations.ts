@@ -1,14 +1,14 @@
-import prismaClient from '../../../database/prismaClient';
+import CreateTransactionUsecase from '../../../domain/usecases/CreateTransaction';
+import PrismaTransactionRepository from '../../../infra/repositories/prisma/PrismaTransactionRepository';
 
 const mutations = {
   createTransaction: async (_: any, { data }: any) => {
-    const transaction = await prismaClient.transactions.create({
-      data: {
-        ...data,
-      },
-    });
+    const transactionRepository = new PrismaTransactionRepository();
+    const createTransactionUsecase = new CreateTransactionUsecase(
+      transactionRepository,
+    );
 
-    return transaction;
+    return await createTransactionUsecase.run(data);
   },
 };
 
