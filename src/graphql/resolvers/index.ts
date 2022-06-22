@@ -1,12 +1,12 @@
-import mutations from './mutations';
-import querys from './querys';
+import transactionsQuerys from './transactions/querys';
+import transactionsMutations from './transactions/mutations';
 
 const resolvers = {
   Query: {
-    ...querys,
+    ...transactionsQuerys
   },
   Mutation: {
-    ...mutations,
+    ...transactionsMutations
   },
 };
 

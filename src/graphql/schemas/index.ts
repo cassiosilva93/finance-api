@@ -1,8 +1,6 @@
 import { mergeTypes } from 'merge-graphql-schemas';
-import querys from './querys';
-import mutations from './mutations';
-import users from './users';
+import transactions from './transactions';
 
-const schemas = mergeTypes([querys, mutations, users]);
+const schemas = mergeTypes([transactions]);
 
 export default schemas;
