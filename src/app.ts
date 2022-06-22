@@ -1,27 +1,16 @@
-import { ApolloServer } from 'apollo-server-express';
-import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
-import express from 'express';
-import http from 'http';
-import environmentVariables from './config/environment-variables';
+import { ApolloServer } from 'apollo-server';
+import environmentsVariables from './config/environmentVariables';
 
 async function startApolloServer(typeDefs: string, resolvers: any) {
-  const { port, graphqlPath } = environmentVariables;
-  const app = express();
-  const httpServer = http.createServer(app);
+  const { port } = environmentsVariables;
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
-  }) as any;
-  await server.start();
-  server.applyMiddleware({ app });
-  await new Promise<void>(resolve => {
-    httpServer.listen({ port });
-    resolve();
+    csrfPrevention: true,
+    cache: 'bounded',
   });
-  console.log(
-    `🚀 GraphQL API server running at http://localhost:${port}${graphqlPath}`,
-  );
+  const { url } = await server.listen({ port })
+  console.log(`🚀 GraphQL server running in ${url}`)
 }
 
 export default startApolloServer;
