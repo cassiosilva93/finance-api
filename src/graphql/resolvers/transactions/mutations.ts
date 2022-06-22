@@ -1,3 +1,4 @@
+import { randomUUID } from 'crypto';
 import CreateTransactionUsecase from '../../../domain/usecases/CreateTransaction';
 import PrismaTransactionRepository from '../../../infra/repositories/prisma/PrismaTransactionRepository';
 
@@ -7,7 +8,8 @@ const mutations = {
     const createTransactionUsecase = new CreateTransactionUsecase(
       transactionRepository,
     );
-    const newTransaction = await createTransactionUsecase.run(data);
+    const id = randomUUID();
+    const newTransaction = await createTransactionUsecase.run({ id, ...data });
     return newTransaction;
   },
 };

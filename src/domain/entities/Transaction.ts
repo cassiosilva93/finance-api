@@ -1,4 +1,5 @@
 interface ITransaction {
+  id: string;
   title: string;
   type: 'income' | 'outcome';
   value: number;
@@ -6,6 +7,8 @@ interface ITransaction {
 }
 
 export default class Transaction {
+  public readonly id: string;
+
   public readonly title: string;
 
   public readonly type: string;
@@ -14,7 +17,8 @@ export default class Transaction {
 
   public readonly category: string;
 
-  constructor({ title, type, value, category }: ITransaction) {
+  constructor({ id, title, type, value, category }: ITransaction) {
+    this.id = id;
     this.title = title;
     this.type = type;
     this.value = value;

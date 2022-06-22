@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Transactions {
-  id         String   @id @default(uuid())
+  id         String   @id
   title      String
   type       String
   value      Float
