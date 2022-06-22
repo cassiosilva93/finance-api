@@ -1,5 +1,5 @@
 import Transaction from 'src/domain/entities/Transaction';
-import TransactionRepository from 'src/domain/repository/TransactionRepository';
+import TransactionRepository from 'src/domain/repositories/TransactionRepository';
 import prismaClient from './prismaClient';
 
 export default class PrismaTransactionRepository

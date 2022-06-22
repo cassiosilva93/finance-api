@@ -1,5 +1,5 @@
 import Transaction from '../entities/Transaction';
-import TransactionRepository from '../repository/TransactionRepository';
+import TransactionRepository from '../repositories/TransactionRepository';
 
 export default class CreateTransaction {
   constructor(private readonly transactionRepository: TransactionRepository) {}

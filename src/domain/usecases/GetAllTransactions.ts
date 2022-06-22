@@ -1,4 +1,4 @@
-import TransactionRepository from '../repository/TransactionRepository';
+import TransactionRepository from '../repositories/TransactionRepository';
 
 export default class GetAllTransactions {
   constructor(private readonly transactionRepository: TransactionRepository) {}
