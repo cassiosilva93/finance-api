@@ -3,10 +3,10 @@ import transactionsMutations from './transactions/mutations';
 
 const resolvers = {
   Query: {
-    ...transactionsQuerys
+    ...transactionsQuerys,
   },
   Mutation: {
-    ...transactionsMutations
+    ...transactionsMutations,
   },
 };
 

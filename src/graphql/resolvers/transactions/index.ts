@@ -3,7 +3,7 @@ import querys from './querys';
 
 const resolvers = {
   ...mutations,
-  ...querys
+  ...querys,
 };
 
 export default resolvers;

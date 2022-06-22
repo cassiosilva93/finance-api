@@ -1,9 +1,9 @@
-import prismaClient from "../../../database/prismaClient";
+import prismaClient from '../../../database/prismaClient';
 
 const querys = {
   getTransactions: async () => {
-    const transactions = await prismaClient.transactions.findMany()
-    return transactions
+    const transactions = await prismaClient.transactions.findMany();
+    return transactions;
   },
 };
 

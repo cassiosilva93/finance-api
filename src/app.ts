@@ -9,8 +9,8 @@ async function startApolloServer(typeDefs: string, resolvers: any) {
     csrfPrevention: true,
     cache: 'bounded',
   });
-  const { url } = await server.listen({ port })
-  console.log(`🚀 GraphQL server running in ${url}`)
+  const { url } = await server.listen({ port });
+  console.log(`🚀 GraphQL server running in ${url}`);
 }
 
 export default startApolloServer;
