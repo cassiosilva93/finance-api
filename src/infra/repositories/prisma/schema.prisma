@@ -7,19 +7,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum TransactionType {
-  income
-  outcome
-}
-
 model Transactions {
-  id         String          @id @default(uuid())
+  id         String   @id @default(uuid())
   title      String
-  type       TransactionType
+  type       String
   value      Float
   category   String
-  created_at DateTime        @default(now())
-  updated_at DateTime        @default(now())
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
 
   @@map("transactions")
 }

@@ -2,13 +2,6 @@ import Transaction from 'src/domain/entities/Transaction';
 import TransactionRepository from 'src/domain/repository/TransactionRepository';
 import prismaClient from './prismaClient';
 
-interface ITransaction {
-  title: string;
-  type: 'income' | 'outcome';
-  value: number;
-  category: string;
-}
-
 export default class PrismaTransactionRepository
   implements TransactionRepository
 {
@@ -17,7 +10,7 @@ export default class PrismaTransactionRepository
     type,
     value,
     category,
-  }: ITransaction): Promise<Transaction | null> {
+  }: Transaction): Promise<Transaction | null> {
     const transaction = await prismaClient.transactions.create({
       data: {
         title,
