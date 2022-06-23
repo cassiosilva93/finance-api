@@ -32,4 +32,13 @@ export default class PrismaTransactionRepository
     const transactions = await prismaClient.transactions.findMany();
     return transactions;
   }
+
+  async getOne(id: string): Promise<Transaction | null> {
+    const transaction = await prismaClient.transactions.findUnique({
+      where: {
+        id,
+      },
+    });
+    return transaction;
+  }
 }

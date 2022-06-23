@@ -2,7 +2,8 @@ import { gql } from 'apollo-server-express';
 
 const querys = gql`
   type Query {
-    getTransactions: [Transaction!]!
+    getTransactions: [Transaction]!
+    getTransaction(id: String!): Transaction
   }
 `;
 

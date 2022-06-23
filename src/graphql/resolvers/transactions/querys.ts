@@ -1,14 +1,24 @@
-import GetAllTransactionsUseCase from '../../../domain/usecases/GetAllTransactions';
+import GetAllTransactionsUsecase from '../../../domain/usecases/GetAllTransactions';
+import GetOneTransactionUsecase from '../../../domain/usecases/GetOneTransaction';
 import PrismaTransactionRepository from '../../../infra/repositories/prisma/PrismaTransactionRepository';
+
+const transactionRepository = new PrismaTransactionRepository();
 
 const querys = {
   getTransactions: async () => {
-    const transactionRepository = new PrismaTransactionRepository();
-    const getAllTransactionsUseCase = new GetAllTransactionsUseCase(
+    const getAllTransactionsUsecase = new GetAllTransactionsUsecase(
       transactionRepository,
     );
-    const transactions = await getAllTransactionsUseCase.run();
+    const transactions = await getAllTransactionsUsecase.run();
     return transactions;
+  },
+
+  getTransaction: async (_: any, args: { id: string }) => {
+    const getOneTransactionUsecase = new GetOneTransactionUsecase(
+      transactionRepository,
+    );
+    const transaction = await getOneTransactionUsecase.run(args.id);
+    return transaction;
   },
 };
 
