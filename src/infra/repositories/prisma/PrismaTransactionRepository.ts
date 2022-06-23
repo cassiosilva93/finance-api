@@ -41,4 +41,17 @@ export default class PrismaTransactionRepository
     });
     return transaction;
   }
+
+  async update(id: string, data: Transaction): Promise<Transaction | null> {
+    const transaction = await prismaClient.transactions.update({
+      where: {
+        id,
+      },
+      data: {
+        ...data,
+      },
+    });
+
+    return transaction;
+  }
 }

@@ -13,7 +13,7 @@ const inputsAndTypes = gql`
     updated_at: Date
   }
 
-  input CreateTransactionInput {
+  input TransactionInput {
     title: String!
     type: String
     value: Float!

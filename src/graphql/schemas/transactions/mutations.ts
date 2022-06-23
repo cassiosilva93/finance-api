@@ -2,7 +2,8 @@ import { gql } from 'apollo-server-express';
 
 const mutations = gql`
   type Mutation {
-    createTransaction(data: CreateTransactionInput!): Transaction!
+    createTransaction(data: TransactionInput!): Transaction!
+    updateTransaction(id: String, data: TransactionInput): Transaction
   }
 `;
 
