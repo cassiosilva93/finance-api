@@ -8,8 +8,16 @@ const mutations = {
     const createTransactionUsecase = new CreateTransactionUsecase(
       transactionRepository,
     );
-    const id = randomUUID();
-    const newTransaction = await createTransactionUsecase.run({ id, ...data });
+    const transaction = {
+      id: randomUUID(),
+      title: data.title,
+      type: data.type,
+      value: data.value,
+      category: data.category,
+      created_at: new Date(),
+      updated_at: new Date(),
+    };
+    const newTransaction = await createTransactionUsecase.run(transaction);
     return newTransaction;
   },
 };
