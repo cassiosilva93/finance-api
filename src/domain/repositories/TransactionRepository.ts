@@ -5,4 +5,5 @@ export default interface TransactionRepository {
   getAll(): Promise<Transaction[] | []>;
   getOne(id: string): Promise<Transaction | null>;
   update(id: string, data: Transaction): Promise<Transaction | null>;
+  delete(id: string): Promise<boolean>;
 }

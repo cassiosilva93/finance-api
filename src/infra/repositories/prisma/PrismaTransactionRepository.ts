@@ -54,4 +54,19 @@ export default class PrismaTransactionRepository
 
     return transaction;
   }
+
+  async delete(id: string): Promise<boolean> {
+    const transactionFound = await prismaClient.transactions.findUnique({
+      where: {
+        id,
+      },
+    });
+    if (!transactionFound) return false;
+    await prismaClient.transactions.delete({
+      where: {
+        id,
+      },
+    });
+    return true;
+  }
 }

@@ -1,5 +1,5 @@
-import GetAllTransactionsUsecase from '../../../domain/usecases/GetAllTransactions';
-import GetOneTransactionUsecase from '../../../domain/usecases/GetOneTransaction';
+import GetAllTransactionsUsecase from '../../../domain/usecases/transactions/GetAllTransactions';
+import GetOneTransactionUsecase from '../../../domain/usecases/transactions/GetOneTransaction';
 import PrismaTransactionRepository from '../../../infra/repositories/prisma/PrismaTransactionRepository';
 
 const transactionRepository = new PrismaTransactionRepository();
