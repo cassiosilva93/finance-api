@@ -1,23 +1,25 @@
 import { randomUUID } from 'crypto';
-import Transaction from '../../../domain/entities/Transaction';
-import CreateTransactionUsecase from '../../../domain/usecases/transactions/CreateTransaction';
-import DeleteTransactionUsecase from '../../../domain/usecases/transactions/DeleteTransaction';
-import UpdateTransactionUsecase from '../../../domain/usecases/transactions/UpdateTransaction';
-import PrismaTransactionRepository from '../../../infra/repositories/prisma/PrismaTransactionRepository';
+import Transaction from '../../../../domain/entities/Transaction';
+import {
+  CreateTransaction,
+  DeleteTransaction,
+  UpdateTransaction,
+} from '../../../../domain/usecases/transactions';
+import PrismaTransactionRepository from '../../../../infra/database/prisma/repositories/PrismaTransactionRepository';
 
 const transactionRepository = new PrismaTransactionRepository();
 
 const mutations = {
-  createTransaction: async (_: any, { data }: any) => {
-    const createTransactionUsecase = new CreateTransactionUsecase(
+  createTransaction: async (_: any, args: { data: Transaction }) => {
+    const createTransactionUsecase = new CreateTransaction(
       transactionRepository,
     );
     const transaction = {
       id: randomUUID(),
-      title: data.title,
-      type: data.type,
-      value: data.value,
-      category: data.category,
+      title: args.data.title,
+      type: args.data.type,
+      value: args.data.value,
+      category: args.data.category,
       created_at: new Date(),
       updated_at: new Date(),
     };
@@ -29,7 +31,7 @@ const mutations = {
     _: any,
     args: { id: string; data: Transaction },
   ) => {
-    const updateTransactionUsecase = new UpdateTransactionUsecase(
+    const updateTransactionUsecase = new UpdateTransaction(
       transactionRepository,
     );
     const updatedTransaction = updateTransactionUsecase.run(args.id, args.data);
@@ -37,7 +39,7 @@ const mutations = {
   },
 
   deleteTransaction: async (_: any, args: { id: string }) => {
-    const deleteTransactionUsecase = new DeleteTransactionUsecase(
+    const deleteTransactionUsecase = new DeleteTransaction(
       transactionRepository,
     );
     const result = await deleteTransactionUsecase.run(args.id);
