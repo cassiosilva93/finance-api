@@ -1,8 +1,8 @@
 import { ApolloServer } from 'apollo-server';
-import environmentsVariables from './config/environmentVariables';
+import config from './config';
 
 async function startApolloServer(typeDefs: string, resolvers: any) {
-  const { port } = environmentsVariables;
+  const { port } = config.graphql;
   const server = new ApolloServer({
     typeDefs,
     resolvers,

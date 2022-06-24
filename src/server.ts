@@ -1,5 +1,5 @@
-import schemas from './graphql/schemas';
-import resolvers from './graphql/resolvers';
 import startApolloServer from './app';
+import resolvers from './infra/graphql/resolvers';
+import schemas from './infra/graphql/schemas';
 
 startApolloServer(schemas, resolvers);
