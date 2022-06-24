@@ -1,8 +1,8 @@
 import {
   GetAllTransactions,
   GetOneTransaction,
-} from '@domain/usecases/transactions';
-import PrismaTransactionRepository from '@infra/databases/prisma/repositories/PrismaTransactionRepository';
+} from '@src/domain/usecases/transactions';
+import PrismaTransactionRepository from '@src/infra/databases/prisma/repositories/PrismaTransactionRepository';
 
 const transactionRepository = new PrismaTransactionRepository();
 
