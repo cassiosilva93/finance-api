@@ -31,7 +31,12 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": false,
     "skipDefaultLibCheck": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "@src/*": ["src/*"],
+      "@domain/*": ["src/domain/*"],
+      "@infra/*": ["src/infra/*"]
+    }
   },
   "include": ["src/**/*", "__tests__/**/*"],
   "exclude": ["node_modules"]

@@ -1,11 +1,11 @@
-import { randomUUID } from 'crypto';
-import Transaction from '../../../../domain/entities/Transaction';
+import Transaction from '@domain/entities/Transaction';
 import {
   CreateTransaction,
   DeleteTransaction,
   UpdateTransaction,
-} from '../../../../domain/usecases/transactions';
-import PrismaTransactionRepository from '../../../databases/prisma/repositories/PrismaTransactionRepository';
+} from '@domain/usecases/transactions';
+import PrismaTransactionRepository from '@infra/databases/prisma/repositories/PrismaTransactionRepository';
+import { randomUUID } from 'crypto';
 
 const transactionRepository = new PrismaTransactionRepository();
 

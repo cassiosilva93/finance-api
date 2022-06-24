@@ -1,4 +1,4 @@
-import TransactionRepository from '../../repositories/TransactionRepository';
+import TransactionRepository from '@infra/databases/prisma/repositories/PrismaTransactionRepository';
 
 export default class DeleteTransaction {
   constructor(private readonly transactionRepository: TransactionRepository) {}

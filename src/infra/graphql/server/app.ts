@@ -1,5 +1,5 @@
+import config from '@src/config';
 import { ApolloServer } from 'apollo-server';
-import config from '../../../config';
 
 async function startApolloServer(typeDefs: string, resolvers: any) {
   const { port } = config.graphql;
