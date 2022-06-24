@@ -2,7 +2,7 @@ import {
   GetAllTransactions,
   GetOneTransaction,
 } from '../../../../domain/usecases/transactions';
-import PrismaTransactionRepository from '../../../../infra/database/prisma/repositories/PrismaTransactionRepository';
+import PrismaTransactionRepository from '../../../databases/prisma/repositories/PrismaTransactionRepository';
 
 const transactionRepository = new PrismaTransactionRepository();
 

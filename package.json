@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec ts-node src/server.ts --ext ts,graphql --inspect --transpile-only --ignore-watch node_modules",
+    "graphql:dev": "nodemon --exec ts-node src/infra/graphql/server --ext ts,graphql --inspect --transpile-only --ignore-watch node_modules",
     "lint:fix": "eslint \"**/*.{ts,tsx}\" --fix",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
