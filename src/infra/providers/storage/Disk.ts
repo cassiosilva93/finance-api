@@ -1,9 +1,9 @@
 import uploadConfig from '@src/config/upload';
 import fs from 'fs';
 import path from 'path';
-import Storage from '../models/Storage';
+import StorageModel from '../models/Storage';
 
-class DiskStorageProvider implements Storage {
+class Disk implements StorageModel {
   public async saveFile(filename: string): Promise<string> {
     await fs.promises.rename(
       path.resolve(uploadConfig.tempFolder, filename),
@@ -18,4 +18,4 @@ class DiskStorageProvider implements Storage {
   }
 }
 
-export default DiskStorageProvider;
+export default Disk;

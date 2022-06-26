@@ -1,4 +1,4 @@
-import TransactionRepository from '@src/infra/databases/prisma/repositories/PrismaTransactionRepository';
+import TransactionRepository from '@src/infra/databases/prisma/repositories/PrismaTransaction';
 
 export default class GetOneTransaction {
   constructor(private readonly transactionRepository: TransactionRepository) {}

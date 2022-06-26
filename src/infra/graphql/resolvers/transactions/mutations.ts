@@ -1,17 +1,17 @@
-import Transaction from '@src/domain/entities/Transaction';
+import TransactionEntity from '@src/domain/entities/Transaction';
 import {
-  CreateTransaction,
-  DeleteTransaction,
-  UpdateTransaction,
+  CreateTransactionUsecase,
+  DeleteTransactionUsecase,
+  UpdateTransactionUsecase,
 } from '@src/domain/usecases/transactions';
-import PrismaTransactionRepository from '@src/infra/databases/prisma/repositories/PrismaTransactionRepository';
+import PrismaTransactionRepository from '@src/infra/databases/prisma/repositories/PrismaTransaction';
 import { randomUUID } from 'crypto';
 
 const transactionRepository = new PrismaTransactionRepository();
 
 const mutations = {
-  createTransaction: async (_: any, args: { data: Transaction }) => {
-    const createTransactionUsecase = new CreateTransaction(
+  createTransaction: async (_: any, args: { data: TransactionEntity }) => {
+    const createTransactionUsecase = new CreateTransactionUsecase(
       transactionRepository,
     );
     const transaction = {
@@ -29,9 +29,9 @@ const mutations = {
 
   updateTransaction: async (
     _: any,
-    args: { id: string; data: Transaction },
+    args: { id: string; data: TransactionEntity },
   ) => {
-    const updateTransactionUsecase = new UpdateTransaction(
+    const updateTransactionUsecase = new UpdateTransactionUsecase(
       transactionRepository,
     );
     const updatedTransaction = updateTransactionUsecase.run(args.id, args.data);
@@ -39,7 +39,7 @@ const mutations = {
   },
 
   deleteTransaction: async (_: any, args: { id: string }) => {
-    const deleteTransactionUsecase = new DeleteTransaction(
+    const deleteTransactionUsecase = new DeleteTransactionUsecase(
       transactionRepository,
     );
     const result = await deleteTransactionUsecase.run(args.id);
