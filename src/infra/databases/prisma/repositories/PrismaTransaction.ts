@@ -1,10 +1,8 @@
-import Transaction from '@src/domain/entities/Transaction';
-import TransactionRepository from '@src/domain/repositories/TransactionRepository';
+import TransactionEntity from '@src/domain/entities/Transaction';
+import TransactionRepository from '@src/domain/repositories/Transaction';
 import prismaClient from '../prismaClient';
 
-export default class PrismaTransactionRepository
-  implements TransactionRepository
-{
+export default class PrismaTransaction implements TransactionRepository {
   async create({
     id,
     title,
@@ -13,7 +11,7 @@ export default class PrismaTransactionRepository
     category,
     created_at,
     updated_at,
-  }: Transaction): Promise<Transaction | null> {
+  }: TransactionEntity): Promise<TransactionEntity | null> {
     const transaction = await prismaClient.transactions.create({
       data: {
         id,
@@ -28,12 +26,12 @@ export default class PrismaTransactionRepository
     return transaction;
   }
 
-  async getAll(): Promise<Transaction[] | []> {
+  async getAll(): Promise<TransactionEntity[] | []> {
     const transactions = await prismaClient.transactions.findMany();
     return transactions;
   }
 
-  async getOne(id: string): Promise<Transaction | null> {
+  async getOne(id: string): Promise<TransactionEntity | null> {
     const transaction = await prismaClient.transactions.findUnique({
       where: {
         id,
@@ -42,7 +40,10 @@ export default class PrismaTransactionRepository
     return transaction;
   }
 
-  async update(id: string, data: Transaction): Promise<Transaction | null> {
+  async update(
+    id: string,
+    data: TransactionEntity,
+  ): Promise<TransactionEntity | null> {
     const transaction = await prismaClient.transactions.update({
       where: {
         id,
