@@ -1,5 +1,3 @@
-import 'dotenv/config';
-
 const rest = {
   port: process.env.API_PORT || 3001,
 };
