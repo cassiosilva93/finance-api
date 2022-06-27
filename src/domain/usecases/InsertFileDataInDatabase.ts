@@ -1,17 +1,13 @@
-import PrismaTransactionRepository from '@src/infra/databases/prisma/repositories/PrismaTransaction';
 import { randomUUID } from 'crypto';
 import fs from 'fs';
 import path from 'path';
 import readline from 'readline';
 import { Readable } from 'stream';
-import { CreateTransactionUsecase } from './transactions';
 
 export default class InsertFileDataInDatabase {
+  constructor(private readonly createTransactionUsecase: any) {}
+
   public async run(filename: string) {
-    const transactionRepository = new PrismaTransactionRepository();
-    const createTransactionUsecase = new CreateTransactionUsecase(
-      transactionRepository,
-    );
     const filePath = path.resolve(
       __dirname,
       '..',
@@ -32,7 +28,6 @@ export default class InsertFileDataInDatabase {
 
     for await (const line of transactionsLine) {
       const lineSplited = line.split(',');
-      if (lineSplited.includes('title')) return;
       const transaction = {
         id: randomUUID(),
         title: lineSplited[0] || '',
@@ -42,7 +37,7 @@ export default class InsertFileDataInDatabase {
         created_at: new Date(),
         updated_at: new Date(),
       };
-      await createTransactionUsecase.run(transaction);
+      await this.createTransactionUsecase.run(transaction);
     }
   }
 }
