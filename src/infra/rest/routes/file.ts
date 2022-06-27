@@ -6,11 +6,12 @@ import FileController from '../controllers/File';
 
 const router = express.Router();
 const upload = multer(uploadConfig.multer);
+const expressAdapter = new ExpressAdapter();
 
 router.post(
   '/',
   upload.single('transactions'),
-  ExpressAdapter.create(FileController.handle),
+  expressAdapter.create(FileController.handle),
 );
 
 export default router;

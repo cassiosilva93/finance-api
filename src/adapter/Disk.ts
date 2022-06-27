@@ -1,9 +1,9 @@
 import config from '@src/config';
 import fs from 'fs';
 import path from 'path';
-import StorageModel from '../models/Storage';
+import StorageAdapter from './ports/Storage';
 
-class Disk implements StorageModel {
+export default class Disk implements StorageAdapter {
   public async saveFile(filename: string): Promise<string> {
     await fs.promises.rename(
       path.resolve(config.upload.tempFolder, filename),
@@ -17,5 +17,3 @@ class Disk implements StorageModel {
     await fs.promises.unlink(filePath);
   }
 }
-
-export default Disk;

@@ -1,10 +1,11 @@
 import { Request, Response } from 'express';
+import HttpAdapter from './ports/Http';
 
-export default class Express {
-  static create(fn: Function) {
-    return async function (req: Request, res: Response) {
-      const obj = await fn(req.file);
-      res.json(obj);
+export default class Express implements HttpAdapter {
+  create(fn: Function) {
+    return async function (request: Request, response: Response) {
+      const obj = await fn(request, response);
+      response.json(obj);
     };
   }
 }
