@@ -7,27 +7,8 @@ import { Readable } from 'stream';
 export default class InsertFileDataInDatabase {
   constructor(private readonly createTransactionUsecase: any) {}
 
-  public async run(filename: string) {
-    const filePath = path.resolve(
-      __dirname,
-      '..',
-      '..',
-      '..',
-      '..',
-      'temp',
-      'uploads',
-      filename,
-    );
-    const buffer = fs.readFileSync(filePath);
-    const readableLine = new Readable();
-    readableLine.push(buffer);
-    readableLine.push(null);
-
-    const transactionsLine = readline.createInterface({
-      input: readableLine,
-    });
-
-    for await (const line of transactionsLine) {
+  private async insertLines(lines: readline.Interface): Promise<void> {
+    for await (const line of lines) {
       const lineSplited = line.split(',');
       const transaction = {
         id: randomUUID(),
@@ -39,6 +20,31 @@ export default class InsertFileDataInDatabase {
         updated_at: new Date(),
       };
       await this.createTransactionUsecase.run(transaction);
+    }
+  }
+
+  public async run(filename: string) {
+    try {
+      const filePath = path.resolve(
+        __dirname,
+        '..',
+        '..',
+        '..',
+        '..',
+        'temp',
+        'uploads',
+        filename,
+      );
+      const buffer = fs.readFileSync(filePath);
+      const readableLine = new Readable();
+      readableLine.push(buffer);
+      readableLine.push(null);
+      const transactionsLine = readline.createInterface({
+        input: readableLine,
+      });
+      await this.insertLines(transactionsLine);
+    } catch (error) {
+      return error;
     }
   }
 }
