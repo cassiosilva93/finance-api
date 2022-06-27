@@ -13,6 +13,7 @@ export default class InsertFileDataInDatabase {
       '..',
       '..',
       '..',
+      '..',
       'temp',
       'uploads',
       filename,

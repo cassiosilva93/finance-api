@@ -1,13 +1,16 @@
-import InsertFileDataInDatabaseUsecase from '@src/domain/usecases/InsertFileDataInDatabase';
-import SaveFileUsecase from '@src/domain/usecases/SaveFile';
+import InsertFileDataInDatabaseUsecase from '@src/domain/usecases/files/InsertFileDataInDatabase';
+import SaveFileUsecase from '@src/domain/usecases/files/SaveFile';
 import { CreateTransactionUsecase } from '@src/domain/usecases/transactions';
 import PrismaTransactionRepository from '@src/infra/databases/prisma/repositories/PrismaTransaction';
 import DiskStorage from '@src/infra/providers/storage/Disk';
-import { Request, Response } from 'express';
+
+interface IFileContent {
+  filename: string;
+}
 
 export default class File {
-  static async handle(request: Request, response: Response) {
-    if (!request.file) return response.json({ message: 'File is required.' });
+  static async handle(file: IFileContent) {
+    if (!file) return { message: 'File is required.' };
     const diskStorageProvider = new DiskStorage();
     const transactionRepository = new PrismaTransactionRepository();
     const saveFileUsecase = new SaveFileUsecase(diskStorageProvider);
@@ -17,8 +20,8 @@ export default class File {
     const insertFileDataInDatabaseUsecase = new InsertFileDataInDatabaseUsecase(
       createTransactionUsecase,
     );
-    await saveFileUsecase.run(request.file.filename);
-    await insertFileDataInDatabaseUsecase.run(request.file.filename);
-    return response.json({ message: 'File uploaded successfully' });
+    await saveFileUsecase.run(file.filename);
+    await insertFileDataInDatabaseUsecase.run(file.filename);
+    return { message: 'File uploaded successfully' };
   }
 }
