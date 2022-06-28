@@ -23,27 +23,31 @@ export default class InsertFileDataInDatabase {
     }
   }
 
-  public async run(filename: string) {
-    const filePath = path.resolve(
-      __dirname,
-      '..',
-      '..',
-      '..',
-      '..',
-      'temp',
-      'uploads',
-      filename,
-    );
-    const fileExists = fs.existsSync(filePath);
-    if (!fileExists) return 'File not exists.';
-    const buffer = fs.readFileSync(filePath);
-    const readableLine = new Readable();
-    readableLine.push(buffer);
-    readableLine.push(null);
-    const transactionsLine = readline.createInterface({
-      input: readableLine,
-    });
-    await this.insertLines(transactionsLine);
-    return 'File uploaded successfully.';
+  public async run(filename: string): Promise<boolean | Error> {
+    try {
+      const filePath = path.resolve(
+        __dirname,
+        '..',
+        '..',
+        '..',
+        '..',
+        'temp',
+        'uploads',
+        filename,
+      );
+      const fileExists = fs.existsSync(filePath);
+      if (!fileExists) throw new Error('file not exists');
+      const buffer = fs.readFileSync(filePath);
+      const readableLine = new Readable();
+      readableLine.push(buffer);
+      readableLine.push(null);
+      const transactionsLine = readline.createInterface({
+        input: readableLine,
+      });
+      await this.insertLines(transactionsLine);
+      return true;
+    } catch (error) {
+      throw new Error('error inserting file information into database');
+    }
   }
 }

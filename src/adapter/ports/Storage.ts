@@ -1,4 +1,4 @@
 export default interface Storage {
-  saveFile(filename: string): Promise<void>;
-  deleteFile(filename: string): Promise<void>;
+  saveFile(filename: string): Promise<boolean | Error>;
+  deleteFile(filename: string): Promise<boolean>;
 }
