@@ -21,7 +21,7 @@ export default class File {
       createTransactionUsecase,
     );
     await saveFileUsecase.run(filename);
-    await insertFileDataInDatabaseUsecase.run(filename);
-    return { message: 'File uploaded successfully.' };
+    const message = await insertFileDataInDatabaseUsecase.run(filename);
+    return { message };
   }
 }

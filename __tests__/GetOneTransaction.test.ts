@@ -1,9 +1,9 @@
+import TransactionEntity from '@src/domain/entities/Transaction';
 import {
   CreateTransactionUsecase,
   GetOneTransactionUsecase,
 } from '@src/domain/usecases/transactions';
 import MemoryTransactionRepository from '@src/infra/databases/Disk/repositories/MemoryTransaction';
-import TransactionEntity from './domain/entities/Transaction';
 import transactionsFixture from './fixtures/transaction';
 
 describe('Get one transaction', () => {

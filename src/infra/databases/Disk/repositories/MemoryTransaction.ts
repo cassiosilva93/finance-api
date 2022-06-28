@@ -26,10 +26,8 @@ export default class MemoryTransaction implements TransactionRepository {
       created_at,
       updated_at,
     });
-    const transaction = this.transactions.find(
-      transaction => transaction.id === id,
-    );
-    return !!transaction ? transaction : null;
+    const transaction = this.transactions.find(t => t.id === id);
+    return transaction || null;
   }
 
   async getAll(): Promise<TransactionEntity[] | []> {
@@ -37,10 +35,8 @@ export default class MemoryTransaction implements TransactionRepository {
   }
 
   async getOne(id: string): Promise<TransactionEntity | null> {
-    const transaction = this.transactions.find(
-      transaction => transaction.id === id,
-    );
-    return !!transaction ? transaction : null;
+    const transaction = this.transactions.find(t => t.id === id);
+    return transaction || null;
   }
 
   async update(
@@ -48,9 +44,7 @@ export default class MemoryTransaction implements TransactionRepository {
     data: TransactionEntity,
   ): Promise<TransactionEntity | null> {
     const notFound = -1;
-    const transactionFound = this.transactions.findIndex(
-      transaction => transaction.id === id,
-    );
+    const transactionFound = this.transactions.findIndex(t => t.id === id);
 
     if (transactionFound === notFound) {
       return null;
@@ -61,17 +55,13 @@ export default class MemoryTransaction implements TransactionRepository {
     };
 
     this.transactions[transactionFound] = transactionChanged;
-    const transaction = this.transactions.find(
-      transaction => transaction.id === id,
-    );
-    return !!transaction ? transaction : null;
+    const transaction = this.transactions.find(t => t.id === id);
+    return transaction || null;
   }
 
   async delete(id: string): Promise<boolean> {
     const notFound = -1;
-    const transactionFound = this.transactions.findIndex(
-      transaction => transaction.id === id,
-    );
+    const transactionFound = this.transactions.findIndex(t => t.id === id);
 
     if (transactionFound === notFound) {
       return false;

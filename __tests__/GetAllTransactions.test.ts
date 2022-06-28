@@ -17,9 +17,10 @@ describe('Get all transaction', () => {
     );
 
     // When
-    for await (const transaction of transactionsFixture) {
-      await createTransactionUsecase.run(transaction);
-    }
+    transactionsFixture.forEach(async t => {
+      const transaction = await createTransactionUsecase.run(t);
+      return transaction;
+    });
 
     const result = await getAllTransactionsUsecase.run();
 

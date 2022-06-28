@@ -17,7 +17,7 @@ describe('Save File', () => {
 
   it('should be able to save file in upload folder', async () => {
     // Given
-    let filesFounded: String[] = [];
+    const filesFounded: string[] = [];
     const diskStorageProvider = new DiskStorage();
     const saveFileUsecase = new SaveFileUsecase(diskStorageProvider);
     const filePath = path.resolve(__dirname, '..', 'temp');

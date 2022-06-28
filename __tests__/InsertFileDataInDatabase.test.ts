@@ -34,12 +34,12 @@ describe('Insert File', () => {
     );
 
     // When
-    const result: any = await insertFileDataInDatabaseUsecase.run(
+    const result = await insertFileDataInDatabaseUsecase.run(
       csvFixture.filename.invalid,
     );
 
     // Then
-    expect(result.code).toBe('ENOENT');
+    expect(result).toBe('File not exists.');
     expect(transactionRepository.transactions).toHaveLength(0);
   });
 });

@@ -9,7 +9,7 @@ export default class InsertFileDataInDatabase {
 
   private async insertLines(lines: readline.Interface): Promise<void> {
     for await (const line of lines) {
-      const lineSplited = line.split(',');
+      const lineSplited = String(line).split(',');
       const transaction = {
         id: randomUUID(),
         title: lineSplited[0] || '',
@@ -24,27 +24,26 @@ export default class InsertFileDataInDatabase {
   }
 
   public async run(filename: string) {
-    try {
-      const filePath = path.resolve(
-        __dirname,
-        '..',
-        '..',
-        '..',
-        '..',
-        'temp',
-        'uploads',
-        filename,
-      );
-      const buffer = fs.readFileSync(filePath);
-      const readableLine = new Readable();
-      readableLine.push(buffer);
-      readableLine.push(null);
-      const transactionsLine = readline.createInterface({
-        input: readableLine,
-      });
-      await this.insertLines(transactionsLine);
-    } catch (error) {
-      return error;
-    }
+    const filePath = path.resolve(
+      __dirname,
+      '..',
+      '..',
+      '..',
+      '..',
+      'temp',
+      'uploads',
+      filename,
+    );
+    const fileExists = fs.existsSync(filePath);
+    if (!fileExists) return 'File not exists.';
+    const buffer = fs.readFileSync(filePath);
+    const readableLine = new Readable();
+    readableLine.push(buffer);
+    readableLine.push(null);
+    const transactionsLine = readline.createInterface({
+      input: readableLine,
+    });
+    await this.insertLines(transactionsLine);
+    return 'File uploaded successfully.';
   }
 }
