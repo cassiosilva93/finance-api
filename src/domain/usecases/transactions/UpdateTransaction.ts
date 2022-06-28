@@ -1,5 +1,5 @@
 import TransactionEntity from '@src/domain/entities/Transaction';
-import TransactionRepository from '@src/infra/databases/prisma/repositories/PrismaTransaction';
+import TransactionRepository from '@src/domain/repositories/Transaction';
 
 export default class UpdateTransaction {
   constructor(private readonly transactionRepository: TransactionRepository) {}

@@ -1,5 +1,8 @@
 import DiskStorage from '@src/adapter/Disk';
-import { IHttpRequest } from '@src/adapter/ports/HttpRequest';
+import { IHttpRequest } from '@src/adapter/ports/httpRequest/HttpRequest';
+import BadRequest from '@src/adapter/ports/httpResponse/BadRequest';
+import Created from '@src/adapter/ports/httpResponse/Created';
+import ServerError from '@src/adapter/ports/httpResponse/ServerError';
 import {
   InsertFileDataInDatabaseUsecase,
   SaveFileUsecase,
@@ -9,8 +12,6 @@ import PrismaTransactionRepository from '@src/infra/databases/prisma/repositorie
 
 export default class File {
   static async handle(request: IHttpRequest) {
-    if (!request.file) return { message: 'File is required.' };
-    const { filename } = request.file;
     const diskStorageProvider = new DiskStorage();
     const transactionRepository = new PrismaTransactionRepository();
     const saveFileUsecase = new SaveFileUsecase(diskStorageProvider);
@@ -20,8 +21,14 @@ export default class File {
     const insertFileDataInDatabaseUsecase = new InsertFileDataInDatabaseUsecase(
       createTransactionUsecase,
     );
-    await saveFileUsecase.run(filename);
-    const message = await insertFileDataInDatabaseUsecase.run(filename);
-    return { message };
+    if (!request.file) return new BadRequest('file is required');
+    const { filename, originalname } = request.file;
+    const saveFileResult = await saveFileUsecase.run(filename);
+    if (saveFileResult instanceof Error) return new ServerError();
+    const insertFileResult = await insertFileDataInDatabaseUsecase.run(
+      filename,
+    );
+    if (insertFileResult instanceof Error) return new ServerError();
+    return new Created({ message: `${originalname} updated successfully` });
   }
 }

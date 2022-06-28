@@ -1,5 +1,6 @@
 interface IFile {
   filename: string;
+  originalname: string;
 }
 
 export interface IHttpRequest {

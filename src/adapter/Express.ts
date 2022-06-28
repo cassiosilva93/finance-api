@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import HttpAdapter from './ports/Http';
+import HttpAdapter from './ports/HttpFramework';
 
 export default class Express implements HttpAdapter {
   create(fn: Function) {
