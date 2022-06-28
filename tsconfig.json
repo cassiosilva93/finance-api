@@ -33,7 +33,8 @@
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "paths": {
-      "@src/*": ["src/*"]
+      "@src/*": ["src/*"],
+      "@tests/*": ["__tests__/*"]
     }
   },
   "include": ["src/**/*", "__tests__/**/*"],

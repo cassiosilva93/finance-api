@@ -3,7 +3,7 @@ import {
   GetAllTransactionsUsecase,
 } from '@src/domain/usecases/transactions';
 import MemoryTransactionRepository from '@src/infra/databases/Disk/repositories/MemoryTransaction';
-import transactionsFixture from './fixtures/transaction';
+import transactionsFixture from '@tests/fixtures/transaction';
 
 describe('Get all transaction', () => {
   it('should be able to get all transactions', async () => {

@@ -1,17 +1,18 @@
 import DiskStorage from '@src/adapter/Disk';
 import { SaveFileUsecase } from '@src/domain/usecases/files';
+import csvFixture from '@tests/fixtures/file';
+import ManipulateFile from '@tests/utils/ManipulateFile';
 import fs from 'fs';
 import path from 'path';
-import csvFixture from './fixtures/file';
-import ManipulateFile from './utils/ManipulateFile';
 
 describe('Save File', () => {
   const manipulateFile = new ManipulateFile();
   const { toManipulate } = csvFixture.filename;
+  const rootdir = [__dirname, '..', '..', '..', '..'];
 
   beforeEach(async () => {
-    const from = path.resolve(__dirname, '..', 'temp', 'uploads', toManipulate);
-    const to = path.resolve(__dirname, '..', 'temp', toManipulate);
+    const from = path.resolve(...rootdir, 'temp', 'uploads', toManipulate);
+    const to = path.resolve(...rootdir, 'temp', toManipulate);
     await manipulateFile.changeDirectory(from, to);
   });
 
@@ -20,7 +21,7 @@ describe('Save File', () => {
     const filesFounded: string[] = [];
     const diskStorageProvider = new DiskStorage();
     const saveFileUsecase = new SaveFileUsecase(diskStorageProvider);
-    const filePath = path.resolve(__dirname, '..', 'temp');
+    const filePath = path.resolve(...rootdir, 'temp');
 
     // When
     await saveFileUsecase.run('test2.csv');

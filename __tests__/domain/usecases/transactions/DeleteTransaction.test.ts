@@ -1,19 +1,19 @@
 import TransactionEntity from '@src/domain/entities/Transaction';
 import {
   CreateTransactionUsecase,
-  GetOneTransactionUsecase,
+  DeleteTransactionUsecase,
 } from '@src/domain/usecases/transactions';
 import MemoryTransactionRepository from '@src/infra/databases/Disk/repositories/MemoryTransaction';
-import transactionsFixture from './fixtures/transaction';
+import transactionsFixture from '@tests/fixtures/transaction';
 
-describe('Get one transaction', () => {
-  it('should be able to get one transaction by id', async () => {
+describe('Delete transaction', () => {
+  it('should be able to delete transaction by id', async () => {
     // Given
     const transactionRepository = new MemoryTransactionRepository();
     const createTransactionUsecase = new CreateTransactionUsecase(
       transactionRepository,
     );
-    const getOneTransactionUsecase = new GetOneTransactionUsecase(
+    const deleteTransactionUsecase = new DeleteTransactionUsecase(
       transactionRepository,
     );
     const transaction = transactionsFixture[0] as TransactionEntity;
@@ -22,9 +22,10 @@ describe('Get one transaction', () => {
     )) as TransactionEntity;
 
     // When
-    const result = await getOneTransactionUsecase.run(newTransaction.id);
+    const result = await deleteTransactionUsecase.run(newTransaction.id);
 
     // Then
-    expect(result).toEqual(transaction);
+    expect(transactionRepository.transactions.length).toBe(0);
+    expect(result).toBeTruthy();
   });
 });
