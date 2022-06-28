@@ -35,8 +35,6 @@ export default class InsertFileDataInDatabase {
         'uploads',
         filename,
       );
-      const fileExists = fs.existsSync(filePath);
-      if (!fileExists) throw new Error('file not exists');
       const buffer = fs.readFileSync(filePath);
       const readableLine = new Readable();
       readableLine.push(buffer);

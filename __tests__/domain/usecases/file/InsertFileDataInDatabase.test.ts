@@ -22,24 +22,4 @@ describe('Insert File', () => {
       csvFixture.registersLength,
     );
   });
-
-  it('should not be able to insert file in database when file does not exists', async () => {
-    // Given
-    const transactionRepository = new MemoryTransactionRepository();
-    const createTransactionUsecase = new CreateTransactionUsecase(
-      transactionRepository,
-    );
-    const insertFileDataInDatabaseUsecase = new InsertFileDataInDatabaseUsecase(
-      createTransactionUsecase,
-    );
-
-    // When
-    const result = await insertFileDataInDatabaseUsecase.run(
-      csvFixture.filename.invalid,
-    );
-
-    // Then
-    expect(result).toBe('File not exists.');
-    expect(transactionRepository.transactions).toHaveLength(0);
-  });
 });
