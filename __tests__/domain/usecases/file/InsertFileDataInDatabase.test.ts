@@ -1,6 +1,6 @@
 import { InsertFileDataInDatabaseUsecase } from '@src/domain/usecases/files';
 import { CreateTransactionUsecase } from '@src/domain/usecases/transactions';
-import MemoryTransactionRepository from '@src/infra/databases/Disk/repositories/MemoryTransaction';
+import MemoryTransactionRepository from '@src/infra/databases/memory/repositories/MemoryTransaction';
 import csvFixture from '@tests/fixtures/file';
 
 describe('Insert File', () => {

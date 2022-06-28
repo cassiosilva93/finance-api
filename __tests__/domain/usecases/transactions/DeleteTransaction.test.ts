@@ -3,7 +3,7 @@ import {
   CreateTransactionUsecase,
   DeleteTransactionUsecase,
 } from '@src/domain/usecases/transactions';
-import MemoryTransactionRepository from '@src/infra/databases/Disk/repositories/MemoryTransaction';
+import MemoryTransactionRepository from '@src/infra/databases/memory/repositories/MemoryTransaction';
 import transactionsFixture from '@tests/fixtures/transaction';
 
 describe('Delete transaction', () => {
