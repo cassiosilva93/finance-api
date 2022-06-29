@@ -15,7 +15,7 @@ const inputsAndTypes = gql`
   input UserInput {
     name: String!
     email: String!
-    password: String
+    password: String!
   }
 
   input UserLoginInput {
