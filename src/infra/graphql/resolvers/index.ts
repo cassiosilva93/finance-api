@@ -1,5 +1,6 @@
-import transactionsQuerys from './transactions/querys';
 import transactionsMutations from './transactions/mutations';
+import transactionsQuerys from './transactions/querys';
+import usersMutations from './users/mutations';
 
 const resolvers = {
   Query: {
@@ -7,6 +8,7 @@ const resolvers = {
   },
   Mutation: {
     ...transactionsMutations,
+    ...usersMutations,
   },
 };
 
