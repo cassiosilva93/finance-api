@@ -1,4 +1,3 @@
-import UserEntity from '@src/domain/entities/User';
 import { CreateUserUsecase } from '@src/domain/usecases/users';
 import PrismaUserRepository from '@src/infra/databases/prisma/repositories/PrismaUser';
 import { randomUUID } from 'crypto';
@@ -6,17 +5,16 @@ import { randomUUID } from 'crypto';
 const userRepository = new PrismaUserRepository();
 
 const mutations = {
-  createUser: async (_: any, args: { data: UserEntity }) => {
+  createUser: async (_: any, args: { data: any }) => {
     const createUserUsecase = new CreateUserUsecase(userRepository);
-    const user: UserEntity = {
-      id: randomUUID(),
-      name: args.data.name,
-      email: args.data.email,
-      password: args.data.password,
-      created_at: new Date(),
-      updated_at: new Date(),
-    };
-    const newUser = await createUserUsecase.run(user);
+    const newUser = await createUserUsecase.run(
+      randomUUID(),
+      args.data.name,
+      args.data.email,
+      args.data.password,
+      new Date(),
+      new Date(),
+    );
     return newUser;
   },
 };
