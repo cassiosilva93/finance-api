@@ -2,18 +2,18 @@ import { UserDTO } from '@src/domain/dtos/User';
 import AlreadyExists from '@src/domain/errors/AlreadyExists';
 import InvalidEmail from '@src/domain/errors/InvalidEmail';
 import { CreateUserUsecase } from '@src/domain/usecases/users';
-import FakeCryptography from '@src/infra/cryptography/Fake';
+import FakeCryptography from '@src/infra/cryptography/FakeCryptography';
 import MemoryUserRepository from '@src/infra/databases/memory/repositories/MemoryUser';
 import createUserFactory from '@tests/factories/createUser';
 import userFixture from '@tests/fixtures/user';
 
 describe('Create User', () => {
-  const userRepository = new MemoryUserRepository();
   const cryptography = new FakeCryptography();
 
   describe('Success', () => {
     it('should be able to create a new user', async () => {
       // Given
+      const userRepository = new MemoryUserRepository();
       const createUserUsecase = new CreateUserUsecase(
         userRepository,
         cryptography,
@@ -48,8 +48,9 @@ describe('Create User', () => {
   });
 
   describe('Fail', () => {
-    it.only('should not be able to create a new user when user is invalid', async () => {
+    it('should not be able to create a new user when user is invalid', async () => {
       // Given
+      const userRepository = new MemoryUserRepository();
       const createUserUsecase = new CreateUserUsecase(
         userRepository,
         cryptography,
@@ -76,6 +77,7 @@ describe('Create User', () => {
 
     it('should not be able to create a new user when user already exists', async () => {
       // Given
+      const userRepository = new MemoryUserRepository();
       const createUserUsecase = new CreateUserUsecase(
         userRepository,
         cryptography,
