@@ -1,3 +1,4 @@
+import CryptographyAdapter from '@src/adapter/ports/Cryptography';
 import { CreateUserOutputDTO } from '@src/domain/dtos/CreateUserOutput';
 import { UserDTO } from '@src/domain/dtos/User';
 import UserEntity from '@src/domain/entities/User';
@@ -5,7 +6,10 @@ import AlreadyExists from '@src/domain/errors/AlreadyExists';
 import UserRepository from '@src/domain/repositories/User';
 
 export default class CreateUser {
-  constructor(private readonly userRepository: UserRepository) {}
+  constructor(
+    private readonly userRepository: UserRepository,
+    private readonly cryptographyAdapter: CryptographyAdapter,
+  ) {}
 
   public async run(
     id: string,
@@ -26,11 +30,12 @@ export default class CreateUser {
     if (userOrError instanceof Error) return userOrError;
     const userExists = await this.userRepository.findByEmail(email);
     if (userExists) return new AlreadyExists('user');
+    const hashedPassword = await this.cryptographyAdapter.hash(password);
     const user = await this.userRepository.create(
       id,
       name,
       email,
-      password,
+      hashedPassword,
       created_at,
       updated_at,
     );

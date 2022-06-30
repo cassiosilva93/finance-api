@@ -1,12 +1,17 @@
 import { CreateUserUsecase } from '@src/domain/usecases/users';
+import BcryptCryptography from '@src/infra/cryptography/bcrypt';
 import PrismaUserRepository from '@src/infra/databases/prisma/repositories/PrismaUser';
 import { randomUUID } from 'crypto';
 
 const userRepository = new PrismaUserRepository();
+const cryptography = new BcryptCryptography();
 
 const mutations = {
   createUser: async (_: any, args: { data: any }) => {
-    const createUserUsecase = new CreateUserUsecase(userRepository);
+    const createUserUsecase = new CreateUserUsecase(
+      userRepository,
+      cryptography,
+    );
     const newUser = await createUserUsecase.run(
       randomUUID(),
       args.data.name,
