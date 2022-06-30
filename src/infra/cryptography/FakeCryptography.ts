@@ -1,6 +1,6 @@
 import CryptographyAdapter from '@src/adapter/ports/Cryptography';
 
-export default class Fake implements CryptographyAdapter {
+export default class FakeCryptography implements CryptographyAdapter {
   private FAKE_SALT = 'FAKECRYPTOGRAPHY';
 
   async hash(plaintext: string): Promise<string> {

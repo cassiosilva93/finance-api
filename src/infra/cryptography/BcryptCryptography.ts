@@ -1,7 +1,7 @@
 import CryptographyAdapter from '@src/adapter/ports/Cryptography';
 import bcrypt from 'bcrypt';
 
-export default class Bcrypt implements CryptographyAdapter {
+export default class BcryptCryptography implements CryptographyAdapter {
   private SALT_ROUNDS = 10;
 
   async hash(plaintext: string): Promise<string> {
