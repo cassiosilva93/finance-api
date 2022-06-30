@@ -1,5 +1,5 @@
-import ExpressAdapter from '@src/adapter/Express';
 import uploadConfig from '@src/config/upload';
+import ExpressAdapter from '@src/infra/http/Express';
 import express from 'express';
 import multer from 'multer';
 import FileController from '../controllers/File';
