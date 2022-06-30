@@ -1,6 +1,7 @@
 import EmailEntity from '@src/domain/entities/Email';
 import InvalidEmail from '@src/domain/errors/InvalidEmail';
 import MaxLengthEmail from '@src/domain/errors/MaxLengthEmail';
+import RequiredProperty from '@src/domain/errors/RequiredProperty';
 import userFixture from '@tests/fixtures/user';
 
 describe('Email entity', () => {
@@ -16,7 +17,7 @@ describe('Email entity', () => {
   });
 
   describe('Fail', () => {
-    it('should not be able to create a new email when value is not provided', async () => {
+    it('should not be able to create a new email when email is invalid', async () => {
       // Given
       const error = EmailEntity.create(userFixture.email.invalid) as Error;
 
@@ -25,13 +26,22 @@ describe('Email entity', () => {
       expect(error.message).toBe(new InvalidEmail().message);
     });
 
-    it('should not be able to create a new password when string to bigger than 255 characters', async () => {
+    it('should not be able to create a new email when string to bigger than 255 characters', async () => {
       // Given
       const error = EmailEntity.create(userFixture.email.tooLarge) as Error;
 
       // Then
       expect(error).toBeInstanceOf(MaxLengthEmail);
       expect(error.message).toBe(new MaxLengthEmail().message);
+    });
+
+    it('should not be able to create a new email when email is not provided', async () => {
+      // Given
+      const error = EmailEntity.create('') as Error;
+
+      // Then
+      expect(error).toBeInstanceOf(RequiredProperty);
+      expect(error.message).toBe(new RequiredProperty('email').message);
     });
   });
 });
