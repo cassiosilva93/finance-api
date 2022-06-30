@@ -14,7 +14,7 @@ const mutations = {
     const createTransactionUsecase = new CreateTransactionUsecase(
       transactionRepository,
     );
-    const transaction = {
+    const transaction: TransactionEntity = {
       id: randomUUID(),
       title: args.data.title,
       type: args.data.type,

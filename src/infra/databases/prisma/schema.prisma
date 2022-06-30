@@ -18,3 +18,14 @@ model Transactions {
 
   @@map("transactions")
 }
+
+model Users {
+  id         String   @id
+  name       String
+  email      String   @unique
+  password   String
+  created_at DateTime
+  updated_at DateTime
+
+  @@map("users")
+}

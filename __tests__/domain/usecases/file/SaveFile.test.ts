@@ -1,5 +1,5 @@
-import DiskStorage from '@src/adapter/Disk';
 import { SaveFileUsecase } from '@src/domain/usecases/files';
+import DiskStorage from '@src/infra/storage/Disk';
 import csvFixture from '@tests/fixtures/file';
 import ManipulateFile from '@tests/utils/ManipulateFile';
 import fs from 'fs';
