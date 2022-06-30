@@ -7,7 +7,6 @@ const inputsAndTypes = gql`
     id: String
     name: String!
     email: String!
-    token: String
     created_at: Date
     updated_at: Date
   }
