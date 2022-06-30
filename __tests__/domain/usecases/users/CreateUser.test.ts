@@ -2,16 +2,22 @@ import { UserDTO } from '@src/domain/dtos/User';
 import AlreadyExists from '@src/domain/errors/AlreadyExists';
 import InvalidEmail from '@src/domain/errors/InvalidEmail';
 import { CreateUserUsecase } from '@src/domain/usecases/users';
+import FakeCryptography from '@src/infra/cryptography/Fake';
 import MemoryUserRepository from '@src/infra/databases/memory/repositories/MemoryUser';
 import createUserFactory from '@tests/factories/createUser';
 import userFixture from '@tests/fixtures/user';
 
 describe('Create User', () => {
+  const userRepository = new MemoryUserRepository();
+  const cryptography = new FakeCryptography();
+
   describe('Success', () => {
     it('should be able to create a new user', async () => {
       // Given
-      const userRepository = new MemoryUserRepository();
-      const createUserUsecase = new CreateUserUsecase(userRepository);
+      const createUserUsecase = new CreateUserUsecase(
+        userRepository,
+        cryptography,
+      );
       const user = createUserFactory({
         email: userFixture.email.valid,
         password: userFixture.password.valid,
@@ -42,10 +48,12 @@ describe('Create User', () => {
   });
 
   describe('Fail', () => {
-    it('should not be able to create a new user when user is invalid', async () => {
+    it.only('should not be able to create a new user when user is invalid', async () => {
       // Given
-      const userRepository = new MemoryUserRepository();
-      const createUserUsecase = new CreateUserUsecase(userRepository);
+      const createUserUsecase = new CreateUserUsecase(
+        userRepository,
+        cryptography,
+      );
       const user = createUserFactory({
         email: userFixture.email.invalid,
         password: userFixture.password.valid,
@@ -68,8 +76,10 @@ describe('Create User', () => {
 
     it('should not be able to create a new user when user already exists', async () => {
       // Given
-      const userRepository = new MemoryUserRepository();
-      const createUserUsecase = new CreateUserUsecase(userRepository);
+      const createUserUsecase = new CreateUserUsecase(
+        userRepository,
+        cryptography,
+      );
       const user1 = createUserFactory({
         email: 'same-email@gmail.com',
         password: userFixture.password.valid,

@@ -8,7 +8,7 @@ import UserRepository from '@src/domain/repositories/User';
 export default class CreateUser {
   constructor(
     private readonly userRepository: UserRepository,
-    private readonly cryptographyAdapter: CryptographyAdapter,
+    private readonly cryptography: CryptographyAdapter,
   ) {}
 
   public async run(
@@ -30,7 +30,7 @@ export default class CreateUser {
     if (userOrError instanceof Error) return userOrError;
     const userExists = await this.userRepository.findByEmail(email);
     if (userExists) return new AlreadyExists('user');
-    const hashedPassword = await this.cryptographyAdapter.hash(password);
+    const hashedPassword = await this.cryptography.hash(password);
     const user = await this.userRepository.create(
       id,
       name,
