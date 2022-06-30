@@ -1,8 +1,6 @@
-import { faker } from '@faker-js/faker';
-
 const user = {
   email: {
-    valid: faker.internet.email(),
+    valid: 'valid@email.com',
     invalid: 'invalid@email',
     tooLarge:
       'abcdefghijklmnopqrstuvxzabcdefghijklmnopqrstuvxzabcdefghijklmnopqrstuvxzabcdefghijklmnopqrstuvxzabcdefghijklmnopqrstuvxzabcdefghijklmnopqrstuvxzabcdefghijklmnopqrstuvxzabcdefghijklmnopqrstuvxzabcdefghijklmnopqrstuvxzabcdefghijklmnopqrstuvxzabcdefghijklmnopqrstuvxz@gmail.com',
