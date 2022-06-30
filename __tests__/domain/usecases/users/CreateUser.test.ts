@@ -1,4 +1,5 @@
 import { UserDTO } from '@src/domain/dtos/User';
+import EmailEntity from '@src/domain/entities/Email';
 import AlreadyExists from '@src/domain/errors/AlreadyExists';
 import InvalidEmail from '@src/domain/errors/InvalidEmail';
 import { CreateUserUsecase } from '@src/domain/usecases/users';
@@ -34,11 +35,11 @@ describe('Create User', () => {
       );
 
       const userSavedInRepository: UserDTO = {
-        id: userRepository.users[0]?.id,
-        name: userRepository.users[0]?.name,
-        email: userRepository.users[0]?.email,
-        created_at: userRepository.users[0]?.created_at,
-        updated_at: userRepository.users[0]?.updated_at,
+        id: userRepository.users[0]?.id as string,
+        name: userRepository.users[0]?.name as string,
+        email: userRepository.users[0]?.email as EmailEntity,
+        created_at: userRepository.users[0]?.created_at as Date,
+        updated_at: userRepository.users[0]?.updated_at as Date,
       };
 
       // Then
