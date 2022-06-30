@@ -1,4 +1,3 @@
-import DiskStorage from '@src/adapter/Disk';
 import { IHttpRequest } from '@src/adapter/ports/httpRequest/HttpRequest';
 import BadRequest from '@src/adapter/ports/httpResponse/BadRequest';
 import Created from '@src/adapter/ports/httpResponse/Created';
@@ -9,6 +8,7 @@ import {
 } from '@src/domain/usecases/files';
 import { CreateTransactionUsecase } from '@src/domain/usecases/transactions';
 import PrismaTransactionRepository from '@src/infra/databases/prisma/repositories/PrismaTransaction';
+import DiskStorage from '@src/infra/storage/Disk';
 
 export default class File {
   static async handle(request: IHttpRequest) {
