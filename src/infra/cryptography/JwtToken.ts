@@ -1,4 +1,5 @@
-import TokenAdapter from '@src/adapter/ports/Token';
+import IPayload from '@src/adapter/ports/token/Payload';
+import TokenAdapter from '@src/adapter/ports/token/Token';
 import jwt from 'jsonwebtoken';
 
 export default class JwtToken implements TokenAdapter {
@@ -10,8 +11,12 @@ export default class JwtToken implements TokenAdapter {
     });
   }
 
-  async decrypt(ciphertext: string): Promise<string | null> {
-    const token = jwt.verify(ciphertext, this.secret) as any;
-    return token ? token : null;
+  async decrypt(ciphertext: string): Promise<IPayload | null> {
+    try {
+      const token = jwt.verify(ciphertext, this.secret) as IPayload;
+      return token;
+    } catch {
+      return null;
+    }
   }
 }
