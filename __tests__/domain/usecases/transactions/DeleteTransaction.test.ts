@@ -3,8 +3,8 @@ import {
   CreateTransactionUsecase,
   DeleteTransactionUsecase,
 } from '@src/domain/usecases/transactions';
-import MemoryTransactionRepository from '@src/infra/databases/memory/repositories/MemoryTransaction';
 import transactionsFixture from '@tests/fixtures/transaction';
+import MemoryTransactionRepository from '@tests/mocks/repositories/MemoryTransaction';
 
 describe('Delete transaction', () => {
   it('should be able to delete transaction by id', async () => {

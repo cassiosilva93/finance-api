@@ -1,7 +1,7 @@
 import { InsertFileDataInDatabaseUsecase } from '@src/domain/usecases/files';
 import { CreateTransactionUsecase } from '@src/domain/usecases/transactions';
-import MemoryTransactionRepository from '@src/infra/databases/memory/repositories/MemoryTransaction';
 import csvFixture from '@tests/fixtures/file';
+import MemoryTransactionRepository from '@tests/mocks/repositories/MemoryTransaction';
 
 describe('Insert File', () => {
   it('should be able to insert file in database', async () => {

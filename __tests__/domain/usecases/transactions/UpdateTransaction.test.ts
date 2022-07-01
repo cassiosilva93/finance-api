@@ -3,8 +3,8 @@ import {
   CreateTransactionUsecase,
   UpdateTransactionUsecase,
 } from '@src/domain/usecases/transactions';
-import MemoryTransactionRepository from '@src/infra/databases/memory/repositories/MemoryTransaction';
 import transactionsFixture from '@tests/fixtures/transaction';
+import MemoryTransactionRepository from '@tests/mocks/repositories/MemoryTransaction';
 
 describe('Update transaction', () => {
   it('should be able to update a transaction', async () => {

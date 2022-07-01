@@ -2,8 +2,8 @@ import {
   CreateTransactionUsecase,
   GetAllTransactionsUsecase,
 } from '@src/domain/usecases/transactions';
-import MemoryTransactionRepository from '@src/infra/databases/memory/repositories/MemoryTransaction';
 import transactionsFixture from '@tests/fixtures/transaction';
+import MemoryTransactionRepository from '@tests/mocks/repositories/MemoryTransaction';
 
 describe('Get all transaction', () => {
   it('should be able to get all transactions', async () => {

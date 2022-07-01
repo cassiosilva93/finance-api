@@ -3,8 +3,8 @@ import {
   CreateTransactionUsecase,
   GetOneTransactionUsecase,
 } from '@src/domain/usecases/transactions';
-import MemoryTransactionRepository from '@src/infra/databases/memory/repositories/MemoryTransaction';
 import transactionsFixture from '@tests/fixtures/transaction';
+import MemoryTransactionRepository from '@tests/mocks/repositories/MemoryTransaction';
 
 describe('Get one transaction', () => {
   it('should be able to get one transaction by id', async () => {

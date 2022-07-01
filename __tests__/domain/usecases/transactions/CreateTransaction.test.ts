@@ -1,7 +1,7 @@
 import TransactionEntity from '@src/domain/entities/Transaction';
 import { CreateTransactionUsecase } from '@src/domain/usecases/transactions';
-import MemoryTransactionRepository from '@src/infra/databases/memory/repositories/MemoryTransaction';
 import transactionsFixture from '@tests/fixtures/transaction';
+import MemoryTransactionRepository from '@tests/mocks/repositories/MemoryTransaction';
 
 describe('Create transaction', () => {
   it('should be able to create a new transaction', async () => {

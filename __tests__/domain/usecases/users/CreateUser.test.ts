@@ -3,10 +3,10 @@ import EmailEntity from '@src/domain/entities/Email';
 import AlreadyExists from '@src/domain/errors/AlreadyExists';
 import InvalidEmail from '@src/domain/errors/InvalidEmail';
 import { CreateUserUsecase } from '@src/domain/usecases/users';
-import FakeCryptography from '@src/infra/cryptography/FakeCryptography';
-import MemoryUserRepository from '@src/infra/databases/memory/repositories/MemoryUser';
 import createUserFactory from '@tests/factories/createUser';
 import userFixture from '@tests/fixtures/user';
+import FakeCryptography from '@tests/mocks/FakeCryptography';
+import MemoryUserRepository from '@tests/mocks/repositories/MemoryUser';
 
 describe('Create User', () => {
   const cryptography = new FakeCryptography();
