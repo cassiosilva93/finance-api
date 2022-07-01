@@ -1,4 +1,5 @@
 import TransactionEntity from '@src/domain/entities/Transaction';
+import Unauthorized from '@src/domain/errors/Unauthorized';
 import {
   CreateTransactionUsecase,
   DeleteTransactionUsecase,
@@ -10,7 +11,12 @@ import { randomUUID } from 'crypto';
 const transactionRepository = new PrismaTransactionRepository();
 
 const mutations = {
-  createTransaction: async (_: any, args: { data: TransactionEntity }) => {
+  createTransaction: async (
+    _: any,
+    args: { data: TransactionEntity },
+    context: any,
+  ) => {
+    if (context.token instanceof Unauthorized) return new Unauthorized();
     const createTransactionUsecase = new CreateTransactionUsecase(
       transactionRepository,
     );
@@ -30,7 +36,9 @@ const mutations = {
   updateTransaction: async (
     _: any,
     args: { id: string; data: TransactionEntity },
+    context: any,
   ) => {
+    if (context.token instanceof Unauthorized) return new Unauthorized();
     const updateTransactionUsecase = new UpdateTransactionUsecase(
       transactionRepository,
     );

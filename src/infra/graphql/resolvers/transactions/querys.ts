@@ -1,3 +1,4 @@
+import Unauthorized from '@src/domain/errors/Unauthorized';
 import {
   GetAllTransactionsUsecase,
   GetOneTransactionUsecase,
@@ -7,7 +8,8 @@ import PrismaTransactionRepository from '@src/infra/databases/prisma/repositorie
 const transactionRepository = new PrismaTransactionRepository();
 
 const querys = {
-  getTransactions: async () => {
+  getTransactions: async (_1: any, _2: any, context: any) => {
+    if (context.token instanceof Unauthorized) return new Unauthorized();
     const getAllTransactionsUsecase = new GetAllTransactionsUsecase(
       transactionRepository,
     );
@@ -15,7 +17,8 @@ const querys = {
     return transactions;
   },
 
-  getTransaction: async (_: any, args: { id: string }) => {
+  getTransaction: async (_: any, args: { id: string }, context: any) => {
+    if (context.token instanceof Unauthorized) return new Unauthorized();
     const getOneTransactionUsecase = new GetOneTransactionUsecase(
       transactionRepository,
     );
