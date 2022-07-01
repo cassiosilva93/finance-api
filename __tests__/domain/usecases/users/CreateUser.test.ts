@@ -5,7 +5,7 @@ import InvalidEmail from '@src/domain/errors/InvalidEmail';
 import { CreateUserUsecase } from '@src/domain/usecases/users';
 import createUserFactory from '@tests/factories/createUser';
 import userFixture from '@tests/fixtures/user';
-import FakeCryptography from '@tests/mocks/FakeCryptography';
+import FakeCryptography from '@tests/mocks/cryptography/FakeCryptography';
 import MemoryUserRepository from '@tests/mocks/repositories/MemoryUser';
 
 describe('Create User', () => {

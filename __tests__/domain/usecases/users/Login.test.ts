@@ -3,8 +3,8 @@ import CreateUserUsecase from '@src/domain/usecases/users/CreateUser';
 import LoginUsecase from '@src/domain/usecases/users/Login';
 import createUserFactory from '@tests/factories/createUser';
 import userFixture from '@tests/fixtures/user';
-import FakeCryptography from '@tests/mocks/FakeCryptography';
-import FakeToken from '@tests/mocks/FakeToken';
+import FakeCryptography from '@tests/mocks/cryptography/FakeCryptography';
+import FakeToken from '@tests/mocks/cryptography/FakeToken';
 import MemoryUserRepository from '@tests/mocks/repositories/MemoryUser';
 
 describe('Login', () => {
