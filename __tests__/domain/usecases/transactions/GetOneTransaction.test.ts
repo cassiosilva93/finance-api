@@ -3,7 +3,7 @@ import {
   CreateTransactionUsecase,
   GetOneTransactionUsecase,
 } from '@src/domain/usecases/transactions';
-import transactionsFixture from '@tests/fixtures/transaction';
+import createTransactionFactory from '@tests/factories/createTransaction';
 import MemoryTransactionRepository from '@tests/mocks/repositories/MemoryTransaction';
 
 describe('Get one transaction', () => {
@@ -16,15 +16,21 @@ describe('Get one transaction', () => {
     const getOneTransactionUsecase = new GetOneTransactionUsecase(
       transactionRepository,
     );
-    const transaction = transactionsFixture[0] as TransactionEntity;
+    const transaction = createTransactionFactory();
     const newTransaction = (await createTransactionUsecase.run(
-      transaction,
+      transaction.id,
+      transaction.title,
+      transaction.type,
+      transaction.value,
+      transaction.category,
+      transaction.created_at,
+      transaction.updated_at,
     )) as TransactionEntity;
 
     // When
     const result = await getOneTransactionUsecase.run(newTransaction.id);
 
     // Then
-    expect(result).toEqual(transaction);
+    expect(result).toEqual(newTransaction);
   });
 });

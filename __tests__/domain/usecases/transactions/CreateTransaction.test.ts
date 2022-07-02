@@ -1,6 +1,5 @@
-import TransactionEntity from '@src/domain/entities/Transaction';
 import { CreateTransactionUsecase } from '@src/domain/usecases/transactions';
-import transactionsFixture from '@tests/fixtures/transaction';
+import createTransactionFactory from '@tests/factories/createTransaction';
 import MemoryTransactionRepository from '@tests/mocks/repositories/MemoryTransaction';
 
 describe('Create transaction', () => {
@@ -10,10 +9,18 @@ describe('Create transaction', () => {
     const createTransactionUsecase = new CreateTransactionUsecase(
       transactionRepository,
     );
-    const transaction = transactionsFixture[0] as TransactionEntity;
+    const transaction = createTransactionFactory();
 
     // When
-    const result = await createTransactionUsecase.run(transaction);
+    const result = await createTransactionUsecase.run(
+      transaction.id as string,
+      transaction.title as string,
+      transaction.type,
+      transaction.value,
+      transaction.category as string,
+      transaction.created_at as Date,
+      transaction.updated_at as Date,
+    );
 
     // Then
     expect(result).toEqual(transactionRepository.transactions[0]);

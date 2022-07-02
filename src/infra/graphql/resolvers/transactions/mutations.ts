@@ -20,22 +20,21 @@ const mutations = {
     const createTransactionUsecase = new CreateTransactionUsecase(
       transactionRepository,
     );
-    const transaction: TransactionEntity = {
-      id: randomUUID(),
-      title: args.data.title,
-      type: args.data.type,
-      value: args.data.value,
-      category: args.data.category,
-      created_at: new Date(),
-      updated_at: new Date(),
-    };
-    const newTransaction = await createTransactionUsecase.run(transaction);
+    const newTransaction = await createTransactionUsecase.run(
+      randomUUID(),
+      args.data.title,
+      String(args.data.type),
+      Number(args.data.value),
+      args.data.category,
+      new Date(),
+      new Date(),
+    );
     return newTransaction;
   },
 
   updateTransaction: async (
     _: any,
-    args: { id: string; data: TransactionEntity },
+    args: { id: string; data: any },
     context: any,
   ) => {
     if (context.token instanceof Unauthorized) return new Unauthorized();
@@ -46,7 +45,8 @@ const mutations = {
     return updatedTransaction;
   },
 
-  deleteTransaction: async (_: any, args: { id: string }) => {
+  deleteTransaction: async (_: any, args: { id: string }, context: any) => {
+    if (context.token instanceof Unauthorized) return new Unauthorized();
     const deleteTransactionUsecase = new DeleteTransactionUsecase(
       transactionRepository,
     );

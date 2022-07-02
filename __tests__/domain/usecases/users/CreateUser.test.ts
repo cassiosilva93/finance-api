@@ -114,5 +114,34 @@ describe('Create User', () => {
       expect(result).toBeInstanceOf(AlreadyExists);
       expect(userRepository.users.length).toBe(1);
     });
+
+    it('should not be able to create a new user when there is error to save in repository', async () => {
+      const userRepository = new MemoryUserRepository();
+      jest.spyOn(userRepository, 'create').mockImplementation(async () => null);
+
+      // Given
+      const createUserUsecase = new CreateUserUsecase(
+        userRepository,
+        cryptography,
+      );
+      const user = createUserFactory({
+        email: userFixture.email.valid,
+        password: userFixture.password.valid,
+      });
+
+      // When
+      const result = await createUserUsecase.run(
+        user.id,
+        user.name,
+        user.email,
+        user.password,
+        user.created_at,
+        user.updated_at,
+      );
+
+      // Then
+      expect(result).toBeInstanceOf(Error);
+      expect(userRepository.users.length).toBe(0);
+    });
   });
 });

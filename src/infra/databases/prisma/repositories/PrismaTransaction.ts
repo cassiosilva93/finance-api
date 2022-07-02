@@ -1,17 +1,19 @@
 import TransactionEntity from '@src/domain/entities/Transaction';
+import TransactionTypeEntity from '@src/domain/entities/TransactionType';
+import TransactionValueEntity from '@src/domain/entities/TransactionValue';
 import TransactionRepository from '@src/domain/repositories/Transaction';
 import prismaClient from '../prismaClient';
 
 export default class PrismaTransaction implements TransactionRepository {
-  async create({
-    id,
-    title,
-    type,
-    value,
-    category,
-    created_at,
-    updated_at,
-  }: TransactionEntity): Promise<TransactionEntity | null> {
+  async create(
+    id: string,
+    title: string,
+    type: string,
+    value: number,
+    category: string,
+    created_at: Date,
+    updated_at: Date,
+  ): Promise<TransactionEntity | null> {
     const transaction = await prismaClient.transactions.create({
       data: {
         id,
@@ -23,12 +25,20 @@ export default class PrismaTransaction implements TransactionRepository {
         updated_at,
       },
     });
-    return transaction;
+    return new TransactionEntity(
+      transaction.id,
+      transaction.title,
+      new TransactionTypeEntity(transaction.type),
+      new TransactionValueEntity(transaction.value),
+      transaction.category,
+      transaction.created_at,
+      transaction.updated_at,
+    );
   }
 
   async getAll(): Promise<TransactionEntity[] | []> {
     const transactions = await prismaClient.transactions.findMany();
-    return transactions;
+    return transactions as any;
   }
 
   async getOne(id: string): Promise<TransactionEntity | null> {
@@ -37,14 +47,11 @@ export default class PrismaTransaction implements TransactionRepository {
         id,
       },
     });
-    return transaction;
+    return transaction as any;
   }
 
-  async update(
-    id: string,
-    data: TransactionEntity,
-  ): Promise<TransactionEntity | null> {
-    const transaction = await prismaClient.transactions.update({
+  async update(id: string, data: any): Promise<TransactionEntity | null> {
+    const transactionUpdated = await prismaClient.transactions.update({
       where: {
         id,
       },
@@ -52,7 +59,15 @@ export default class PrismaTransaction implements TransactionRepository {
         ...data,
       },
     });
-
+    const transaction: TransactionEntity = new TransactionEntity(
+      transactionUpdated?.id as string,
+      transactionUpdated?.title as string,
+      new TransactionTypeEntity(transactionUpdated?.type as string),
+      new TransactionValueEntity(transactionUpdated?.value as number),
+      transactionUpdated?.category as string,
+      transactionUpdated?.created_at as Date,
+      transactionUpdated?.updated_at as Date,
+    );
     return transaction;
   }
 

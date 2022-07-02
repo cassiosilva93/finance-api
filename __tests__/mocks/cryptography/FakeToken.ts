@@ -18,6 +18,6 @@ export default class FakeToken implements TokenAdapter {
       iat,
       exp,
     };
-    return token ? token : null;
+    return token || null;
   }
 }

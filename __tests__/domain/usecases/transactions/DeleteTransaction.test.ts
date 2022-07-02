@@ -1,9 +1,9 @@
-import TransactionEntity from '@src/domain/entities/Transaction';
+import Transaction from '@src/domain/entities/Transaction';
 import {
   CreateTransactionUsecase,
   DeleteTransactionUsecase,
 } from '@src/domain/usecases/transactions';
-import transactionsFixture from '@tests/fixtures/transaction';
+import createTransactionFactory from '@tests/factories/createTransaction';
 import MemoryTransactionRepository from '@tests/mocks/repositories/MemoryTransaction';
 
 describe('Delete transaction', () => {
@@ -16,10 +16,16 @@ describe('Delete transaction', () => {
     const deleteTransactionUsecase = new DeleteTransactionUsecase(
       transactionRepository,
     );
-    const transaction = transactionsFixture[0] as TransactionEntity;
+    const transaction = createTransactionFactory();
     const newTransaction = (await createTransactionUsecase.run(
-      transaction,
-    )) as TransactionEntity;
+      transaction.id,
+      transaction.title,
+      transaction.type,
+      transaction.value,
+      transaction.category,
+      transaction.created_at,
+      transaction.updated_at,
+    )) as Transaction;
 
     // When
     const result = await deleteTransactionUsecase.run(newTransaction.id);

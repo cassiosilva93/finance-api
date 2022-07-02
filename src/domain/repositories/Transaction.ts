@@ -1,7 +1,15 @@
 import TransactionEntity from '../entities/Transaction';
 
 export default interface Transaction {
-  create(transaction: TransactionEntity): Promise<TransactionEntity | null>;
+  create(
+    id: string,
+    title: string,
+    type: string,
+    value: number,
+    category: string,
+    created_at: Date,
+    updated_at: Date,
+  ): Promise<TransactionEntity | null>;
   getAll(): Promise<TransactionEntity[] | []>;
   getOne(id: string): Promise<TransactionEntity | null>;
   update(

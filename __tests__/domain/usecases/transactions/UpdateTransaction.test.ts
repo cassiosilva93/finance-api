@@ -1,9 +1,11 @@
 import TransactionEntity from '@src/domain/entities/Transaction';
+import TransactionTypeEntity from '@src/domain/entities/TransactionType';
+import TransactionValueEntity from '@src/domain/entities/TransactionValue';
 import {
   CreateTransactionUsecase,
   UpdateTransactionUsecase,
 } from '@src/domain/usecases/transactions';
-import transactionsFixture from '@tests/fixtures/transaction';
+import createTransactionEntity from '@tests/factories/createTransaction';
 import MemoryTransactionRepository from '@tests/mocks/repositories/MemoryTransaction';
 
 describe('Update transaction', () => {
@@ -16,19 +18,25 @@ describe('Update transaction', () => {
     const updateTransactionUsecase = new UpdateTransactionUsecase(
       transactionRepository,
     );
-    const transaction = transactionsFixture[0] as TransactionEntity;
+    const transaction = createTransactionEntity();
     const resultCreateTransactionUsecase = (await createTransactionUsecase.run(
-      transaction,
+      transaction.id,
+      transaction.title,
+      transaction.type,
+      transaction.value,
+      transaction.category,
+      transaction.created_at,
+      transaction.updated_at,
     )) as TransactionEntity;
     const newData = {
       id: resultCreateTransactionUsecase?.id,
       title: 'title changed',
       category: 'category changed',
-      type: 'income',
-      value: 1000,
+      type: new TransactionTypeEntity('income'),
+      value: new TransactionValueEntity(1000),
       created_at: new Date(),
       updated_at: new Date(),
-    } as TransactionEntity;
+    };
 
     // When
     const result = await updateTransactionUsecase.run(

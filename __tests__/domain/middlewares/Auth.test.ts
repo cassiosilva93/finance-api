@@ -4,10 +4,6 @@ import AuthMiddleware from '@src/domain/middlewares/Auth';
 import FakeToken from '@tests/mocks/cryptography/FakeToken';
 
 describe('Auth middleware', () => {
-  beforeEach(() => {
-    jest.restoreAllMocks();
-  });
-
   describe('Success', () => {
     it('should be able to validate header authorization', async () => {
       const token = new FakeToken();
