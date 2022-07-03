@@ -1,4 +1,6 @@
 import TransactionEntity from '@src/domain/entities/Transaction';
+import TransactionTypeEntity from '@src/domain/entities/TransactionType';
+import TransactionValueEntity from '@src/domain/entities/TransactionValue';
 import TransactionRepository from '@src/domain/repositories/Transaction';
 
 export default class MemoryTransaction implements TransactionRepository {
@@ -8,23 +10,33 @@ export default class MemoryTransaction implements TransactionRepository {
     this.transactions = [];
   }
 
-  async create({
-    id,
-    title,
-    type,
-    value,
-    category,
-    created_at,
-    updated_at,
-  }: TransactionEntity): Promise<TransactionEntity | null> {
-    this.transactions.push({
+  async create(
+    id: string,
+    title: string,
+    type: string,
+    value: number,
+    category: string,
+    created_at: Date,
+    updated_at: Date,
+  ): Promise<TransactionEntity | null> {
+    const newTransaction = new TransactionEntity(
       id,
       title,
-      type,
-      value,
+      new TransactionTypeEntity(type),
+      new TransactionValueEntity(value),
       category,
       created_at,
       updated_at,
+    );
+
+    this.transactions.push({
+      id: newTransaction.id,
+      title: newTransaction.title,
+      type: newTransaction.type,
+      value: newTransaction.value,
+      category: newTransaction.category,
+      created_at: newTransaction.created_at,
+      updated_at: newTransaction.updated_at,
     });
     const transaction = this.transactions.find(t => t.id === id);
     return transaction || null;

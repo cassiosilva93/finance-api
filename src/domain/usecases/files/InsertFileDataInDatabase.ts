@@ -12,14 +12,22 @@ export default class InsertFileDataInDatabase {
       const lineSplited = String(line).split(',');
       const transaction = {
         id: randomUUID(),
-        title: lineSplited[0] || '',
-        type: lineSplited[1] || '',
-        value: Number(lineSplited[2]) || 0,
-        category: lineSplited[3] || '',
+        title: lineSplited[0],
+        type: lineSplited[1],
+        value: Number(lineSplited[2]),
+        category: lineSplited[3],
         created_at: new Date(),
         updated_at: new Date(),
       };
-      await this.createTransactionUsecase.run(transaction);
+      await this.createTransactionUsecase.run(
+        transaction.id,
+        transaction.title,
+        transaction.type,
+        transaction.value,
+        transaction.category,
+        transaction.created_at,
+        transaction.updated_at,
+      );
     }
   }
 

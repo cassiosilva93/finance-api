@@ -14,10 +14,10 @@ const inputsAndTypes = gql`
   }
 
   input TransactionInput {
-    title: String!
+    title: String
     type: String
-    value: Float!
-    category: String!
+    value: Float
+    category: String
   }
 `;
 

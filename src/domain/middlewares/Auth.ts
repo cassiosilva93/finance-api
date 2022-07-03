@@ -9,7 +9,7 @@ export default class Auth {
   async validate({
     headers,
   }: IHeader): Promise<Unauthorized | null | IPayload> {
-    const authorization = headers.authorization;
+    const { authorization } = headers;
     if (!authorization) return new Unauthorized();
     const [, token] = authorization.split(' ');
     if (!token) return new Unauthorized();
