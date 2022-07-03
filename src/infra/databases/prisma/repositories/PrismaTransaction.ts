@@ -37,17 +37,38 @@ export default class PrismaTransaction implements TransactionRepository {
   }
 
   async getAll(): Promise<TransactionEntity[] | []> {
-    const transactions = await prismaClient.transactions.findMany();
-    return transactions as any;
+    const transactionsFound = await prismaClient.transactions.findMany();
+    const transactions = transactionsFound.map(t => {
+      return {
+        id: t.id,
+        title: t.title,
+        type: new TransactionTypeEntity(t.type),
+        value: new TransactionValueEntity(t.value),
+        category: t.category,
+        created_at: t.created_at,
+        updated_at: t.updated_at,
+      };
+    });
+    return transactions;
   }
 
   async getOne(id: string): Promise<TransactionEntity | null> {
-    const transaction = await prismaClient.transactions.findUnique({
+    const transactionFound = await prismaClient.transactions.findUnique({
       where: {
         id,
       },
     });
-    return transaction as any;
+    if (!transactionFound) return null;
+    const transaction = {
+      id: transactionFound.id,
+      title: transactionFound.title,
+      type: new TransactionTypeEntity(transactionFound.type),
+      value: new TransactionValueEntity(transactionFound.value),
+      category: transactionFound.category,
+      created_at: transactionFound.created_at,
+      updated_at: transactionFound.updated_at,
+    };
+    return transaction;
   }
 
   async update(id: string, data: any): Promise<TransactionEntity | null> {
