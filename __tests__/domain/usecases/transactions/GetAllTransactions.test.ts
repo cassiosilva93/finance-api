@@ -3,6 +3,7 @@ import {
   GetAllTransactionsUsecase,
 } from '@src/domain/usecases/transactions';
 import createTransactionFactory from '@tests/factories/createTransaction';
+import transactionFixture from '@tests/fixtures/transaction';
 import MemoryTransactionRepository from '@tests/mocks/repositories/MemoryTransaction';
 
 describe('Get all transaction', () => {
@@ -15,8 +16,14 @@ describe('Get all transaction', () => {
     const getAllTransactionsUsecase = new GetAllTransactionsUsecase(
       transactionRepository,
     );
-    const transaction1 = createTransactionFactory();
-    const transaction2 = createTransactionFactory();
+    const transaction1 = createTransactionFactory({
+      type: transactionFixture.type.valid.income,
+      value: transactionFixture.value.valid,
+    });
+    const transaction2 = createTransactionFactory({
+      type: transactionFixture.type.valid.income,
+      value: transactionFixture.value.valid,
+    });
     const transactions = [transaction1, transaction2];
 
     // When
