@@ -24,6 +24,7 @@
     "no-restricted-syntax": ["error", "ForInStatement"],
     "@typescript-eslint/ban-types": "off",
     "@typescript-eslint/no-explicit-any": "off",
+    "import/prefer-default-export": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
     "import/extensions": [
       "off",
