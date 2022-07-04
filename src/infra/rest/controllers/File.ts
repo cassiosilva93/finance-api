@@ -5,8 +5,8 @@ import ServerError from '@src/adapter/ports/httpResponse/ServerError';
 import {
   InsertFileDataInDatabaseUsecase,
   SaveFileUsecase,
-} from '@src/domain/usecases/files';
-import { CreateTransactionUsecase } from '@src/domain/usecases/transactions';
+} from '@src/application/usecases/files';
+import { CreateTransactionUsecase } from '@src/application/usecases/transactions';
 import PrismaTransactionRepository from '@src/infra/databases/prisma/repositories/PrismaTransaction';
 import DiskStorage from '@src/infra/storage/Disk';
 

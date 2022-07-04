@@ -2,11 +2,7 @@ import MinLengthPasswordError from '../errors/MinLengthPassword';
 import RequiredPropertyError from '../errors/RequiredProperty';
 
 export default class Password {
-  public readonly password: string;
-
-  public constructor(password: string) {
-    this.password = password;
-  }
+  public constructor(public readonly password: string) {}
 
   static isValid(
     password: string,

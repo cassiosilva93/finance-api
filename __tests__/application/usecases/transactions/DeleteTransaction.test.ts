@@ -1,8 +1,8 @@
-import Transaction from '@src/domain/entities/Transaction';
 import {
   CreateTransactionUsecase,
   DeleteTransactionUsecase,
-} from '@src/domain/usecases/transactions';
+} from '@src/application/usecases/transactions';
+import Transaction from '@src/domain/entities/Transaction';
 import createTransactionFactory from '@tests/factories/createTransaction';
 import transactionFixture from '@tests/fixtures/transaction';
 import MemoryTransactionRepository from '@tests/mocks/repositories/MemoryTransaction';

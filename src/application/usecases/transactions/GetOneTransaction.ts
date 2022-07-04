@@ -1,4 +1,4 @@
-import TransactionRepository from '@src/domain/repositories/Transaction';
+import TransactionRepository from '@src/application/repositories/Transaction';
 
 export default class GetOneTransaction {
   constructor(private readonly transactionRepository: TransactionRepository) {}

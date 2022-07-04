@@ -1,7 +1,7 @@
+import UserRepository from '@src/application/repositories/User';
 import EmailEntity from '@src/domain/entities/Email';
 import Password from '@src/domain/entities/Password';
 import UserEntity from '@src/domain/entities/User';
-import UserRepository from '@src/domain/repositories/User';
 
 export default class MemoryUser implements UserRepository {
   public users: UserEntity[];

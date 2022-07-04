@@ -1,5 +1,5 @@
+import { CreateUserUsecase } from '@src/application/usecases/users';
 import Unauthorized from '@src/domain/errors/Unauthorized';
-import { CreateUserUsecase } from '@src/domain/usecases/users';
 import BcryptCryptography from '@src/infra/cryptography/BcryptCryptography';
 import PrismaUserRepository from '@src/infra/databases/prisma/repositories/PrismaUser';
 import { randomUUID } from 'crypto';

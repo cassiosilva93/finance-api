@@ -1,8 +1,8 @@
+import { CreateUserUsecase } from '@src/application/usecases/users';
 import { UserDTO } from '@src/domain/dtos/User';
 import EmailEntity from '@src/domain/entities/Email';
 import AlreadyExists from '@src/domain/errors/AlreadyExists';
 import InvalidEmail from '@src/domain/errors/InvalidEmail';
-import { CreateUserUsecase } from '@src/domain/usecases/users';
 import createUserFactory from '@tests/factories/createUser';
 import userFixture from '@tests/fixtures/user';
 import FakeCryptography from '@tests/mocks/cryptography/FakeCryptography';

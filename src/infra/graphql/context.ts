@@ -1,5 +1,5 @@
+import AuthMiddleware from '@src/application/middlewares/Auth';
 import config from '@src/config';
-import AuthMiddleware from '@src/domain/middlewares/Auth';
 import JwtToken from '@src/infra/cryptography/JwtToken';
 
 const context = async ({ req }: any) => {

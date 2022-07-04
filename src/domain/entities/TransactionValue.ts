@@ -2,11 +2,7 @@ import MinimumValue from '../errors/MinimumValue';
 import RequiredProperty from '../errors/RequiredProperty';
 
 export default class TransactionValue {
-  public readonly value: number;
-
-  public constructor(value: number) {
-    this.value = value;
-  }
+  public constructor(public readonly value: number) {}
 
   static isValid(value: number): boolean | RequiredProperty | MinimumValue {
     if (value <= 0) return new MinimumValue();

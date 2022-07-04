@@ -1,4 +1,4 @@
-import { SaveFileUsecase } from '@src/domain/usecases/files';
+import { SaveFileUsecase } from '@src/application/usecases/files';
 import DiskStorage from '@src/infra/storage/Disk';
 import csvFixture from '@tests/fixtures/file';
 import ManipulateFile from '@tests/utils/ManipulateFile';

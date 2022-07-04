@@ -1,8 +1,8 @@
-import Unauthorized from '@src/domain/errors/Unauthorized';
 import {
   GetAllTransactionsUsecase,
   GetOneTransactionUsecase,
-} from '@src/domain/usecases/transactions';
+} from '@src/application/usecases/transactions';
+import Unauthorized from '@src/domain/errors/Unauthorized';
 import PrismaTransactionRepository from '@src/infra/databases/prisma/repositories/PrismaTransaction';
 
 const transactionRepository = new PrismaTransactionRepository();

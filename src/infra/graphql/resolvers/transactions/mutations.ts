@@ -1,10 +1,10 @@
-import TransactionEntity from '@src/domain/entities/Transaction';
-import Unauthorized from '@src/domain/errors/Unauthorized';
 import {
   CreateTransactionUsecase,
   DeleteTransactionUsecase,
   UpdateTransactionUsecase,
-} from '@src/domain/usecases/transactions';
+} from '@src/application/usecases/transactions';
+import TransactionEntity from '@src/domain/entities/Transaction';
+import Unauthorized from '@src/domain/errors/Unauthorized';
 import PrismaTransactionRepository from '@src/infra/databases/prisma/repositories/PrismaTransaction';
 import { randomUUID } from 'crypto';
 

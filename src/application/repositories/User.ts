@@ -1,4 +1,4 @@
-import UserEntity from '../entities/User';
+import UserEntity from '../../domain/entities/User';
 
 export default interface User {
   create(

@@ -1,4 +1,4 @@
-import { CreateTransactionUsecase } from '@src/domain/usecases/transactions';
+import { CreateTransactionUsecase } from '@src/application/usecases/transactions';
 import createTransactionFactory from '@tests/factories/createTransaction';
 import transactionFixture from '@tests/fixtures/transaction';
 import MemoryTransactionRepository from '@tests/mocks/repositories/MemoryTransaction';

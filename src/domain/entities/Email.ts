@@ -3,11 +3,7 @@ import MaxLengthEmail from '../errors/MaxLengthEmail';
 import RequiredProperty from '../errors/RequiredProperty';
 
 export default class Email {
-  public readonly email: string;
-
-  public constructor(email: string) {
-    this.email = email;
-  }
+  public constructor(public readonly email: string) {}
 
   static isValid(
     email: string,

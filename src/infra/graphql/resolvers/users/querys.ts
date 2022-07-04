@@ -1,5 +1,5 @@
+import LoginUsecase from '@src/application/usecases/users/Login';
 import config from '@src/config';
-import LoginUsecase from '@src/domain/usecases/users/Login';
 import BcryptCryptography from '@src/infra/cryptography/BcryptCryptography';
 import JwtToken from '@src/infra/cryptography/JwtToken';
 import PrismaUserRepository from '@src/infra/databases/prisma/repositories/PrismaUser';

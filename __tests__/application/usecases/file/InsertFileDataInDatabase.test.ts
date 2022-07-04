@@ -1,5 +1,5 @@
-import { InsertFileDataInDatabaseUsecase } from '@src/domain/usecases/files';
-import { CreateTransactionUsecase } from '@src/domain/usecases/transactions';
+import { InsertFileDataInDatabaseUsecase } from '@src/application/usecases/files';
+import { CreateTransactionUsecase } from '@src/application/usecases/transactions';
 import csvFixture from '@tests/fixtures/file';
 import MemoryTransactionRepository from '@tests/mocks/repositories/MemoryTransaction';
 

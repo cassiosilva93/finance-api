@@ -1,8 +1,8 @@
 import CryptographyAdapter from '@src/adapter/ports/Cryptography';
 import TokenAdapter from '@src/adapter/ports/token/Token';
+import UserRepository from '@src/application/repositories/User';
 import config from '@src/config';
 import IncorrectEmailOrPassword from '@src/domain/errors/IncorrectEmailOrPassword';
-import UserRepository from '@src/domain/repositories/User';
 
 export default class Login {
   constructor(

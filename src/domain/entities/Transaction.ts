@@ -5,37 +5,15 @@ import TransactionTypeEntity from './TransactionType';
 import TransactionValueEntity from './TransactionValue';
 
 export default class Transaction {
-  public readonly id: string;
-
-  public readonly title: string;
-
-  public readonly type: TransactionTypeEntity;
-
-  public readonly value: TransactionValueEntity;
-
-  public readonly category: string;
-
-  public readonly created_at: Date;
-
-  public readonly updated_at: Date;
-
   constructor(
-    id: string,
-    title: string,
-    type: TransactionTypeEntity,
-    value: TransactionValueEntity,
-    category: string,
-    created_at: Date,
-    updated_at: Date,
-  ) {
-    this.id = id;
-    this.title = title;
-    this.type = type;
-    this.value = value;
-    this.category = category;
-    this.created_at = created_at;
-    this.updated_at = updated_at;
-  }
+    public readonly id: string,
+    public readonly title: string,
+    public readonly type: TransactionTypeEntity,
+    public readonly value: TransactionValueEntity,
+    public readonly category: string,
+    public readonly created_at: Date,
+    public readonly updated_at: Date,
+  ) {}
 
   static create(
     id: string,

@@ -2,11 +2,7 @@ import IncorrectType from '../errors/IncorrectType';
 import RequiredProperty from '../errors/RequiredProperty';
 
 export default class TransactionType {
-  public readonly type: string;
-
-  public constructor(type: string) {
-    this.type = type;
-  }
+  public constructor(public readonly type: string) {}
 
   static isValid(type: string): boolean | IncorrectType | RequiredProperty {
     const validTypes = ['income', 'outcome'];
