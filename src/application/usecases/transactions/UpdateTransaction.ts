@@ -9,7 +9,7 @@ export default class UpdateTransaction {
   public async run(id: string, data: TransactionEntity) {
     let typeOrError;
     let valueOrError;
-    let dataValidated = {
+    const dataValidated = {
       ...data,
     } as any;
     if (data.type)
