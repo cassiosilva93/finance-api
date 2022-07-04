@@ -5,7 +5,7 @@ import ManipulateFile from '@tests/utils/ManipulateFile';
 import fs from 'fs';
 import path from 'path';
 
-describe('Save File', () => {
+describe.skip('Save File', () => {
   const manipulateFile = new ManipulateFile();
   const { toManipulate } = csvFixture.filename;
   const rootdir = [__dirname, '..', '..', '..', '..'];
