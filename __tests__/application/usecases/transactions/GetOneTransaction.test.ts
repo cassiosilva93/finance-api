@@ -21,6 +21,7 @@ describe('Get one transaction', () => {
       const transaction = createTransactionFactory({
         type: transactionFixture.type.valid.income,
         value: transactionFixture.value.valid,
+        userId: 'user_id',
       });
       const newTransaction = (await createTransactionUsecase.run(
         transaction.id,
@@ -30,6 +31,7 @@ describe('Get one transaction', () => {
         transaction.category,
         transaction.created_at,
         transaction.updated_at,
+        transaction.user_id,
       )) as TransactionEntity;
 
       // When
@@ -60,6 +62,7 @@ describe('Get one transaction', () => {
         const transaction = createTransactionFactory({
           type: transactionFixture.type.valid.income,
           value: transactionFixture.value.valid,
+          userId: 'user_id',
         });
         await createTransactionUsecase.run(
           transaction.id,
@@ -69,6 +72,7 @@ describe('Get one transaction', () => {
           transaction.category,
           transaction.created_at,
           transaction.updated_at,
+          transaction.user_id,
         );
 
         // When

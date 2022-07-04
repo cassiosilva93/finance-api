@@ -4,9 +4,14 @@ import { randomUUID } from 'crypto';
 interface ICreateTransactionParams {
   type: string;
   value: number;
+  userId: string;
 }
 
-const createTransaction = ({ type, value }: ICreateTransactionParams) => {
+const createTransaction = ({
+  type,
+  value,
+  userId,
+}: ICreateTransactionParams) => {
   const transaction = {
     id: randomUUID(),
     title: faker.finance.accountName(),
@@ -15,6 +20,7 @@ const createTransaction = ({ type, value }: ICreateTransactionParams) => {
     category: faker.finance.bic(),
     created_at: new Date(),
     updated_at: new Date(),
+    user_id: userId,
   };
   return transaction;
 };

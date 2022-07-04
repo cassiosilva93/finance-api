@@ -10,10 +10,11 @@ const transactionRepository = new PrismaTransactionRepository();
 const querys = {
   getTransactions: async (_parent: any, _args: any, context: any) => {
     if (context.token instanceof Unauthorized) return new Unauthorized();
+    const userId = context.token.id;
     const getAllTransactionsUsecase = new GetAllTransactionsUsecase(
       transactionRepository,
     );
-    const transactions = await getAllTransactionsUsecase.run();
+    const transactions = await getAllTransactionsUsecase.run(userId);
     return transactions;
   },
 

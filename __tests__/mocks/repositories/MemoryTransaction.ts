@@ -18,6 +18,7 @@ export default class MemoryTransaction implements TransactionRepository {
     category: string,
     created_at: Date,
     updated_at: Date,
+    user_id: string,
   ): Promise<TransactionEntity | null> {
     const newTransaction = new TransactionEntity(
       id,
@@ -27,6 +28,7 @@ export default class MemoryTransaction implements TransactionRepository {
       category,
       created_at,
       updated_at,
+      user_id,
     );
 
     this.transactions.push({
@@ -37,13 +39,15 @@ export default class MemoryTransaction implements TransactionRepository {
       category: newTransaction.category,
       created_at: newTransaction.created_at,
       updated_at: newTransaction.updated_at,
+      user_id: newTransaction.user_id,
     });
     const transaction = this.transactions.find(t => t.id === id);
     return transaction || null;
   }
 
-  async getAll(): Promise<TransactionEntity[] | []> {
-    return this.transactions;
+  async getAll(userId: string): Promise<TransactionEntity[] | []> {
+    const transactions = this.transactions.filter(t => t.user_id === userId);
+    return transactions;
   }
 
   async getOne(id: string): Promise<TransactionEntity | null> {

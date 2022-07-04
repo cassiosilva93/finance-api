@@ -8,4 +8,7 @@ export interface IHttpRequest {
   params?: string;
   query?: string;
   file?: IFile;
+  headers?: {
+    authorization?: string;
+  };
 }
