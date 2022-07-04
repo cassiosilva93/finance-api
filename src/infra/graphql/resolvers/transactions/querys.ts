@@ -8,7 +8,7 @@ import PrismaTransactionRepository from '@src/infra/databases/prisma/repositorie
 const transactionRepository = new PrismaTransactionRepository();
 
 const querys = {
-  getTransactions: async (_1: any, _2: any, context: any) => {
+  getTransactions: async (_parent: any, _args: any, context: any) => {
     if (context.token instanceof Unauthorized) return new Unauthorized();
     const getAllTransactionsUsecase = new GetAllTransactionsUsecase(
       transactionRepository,
