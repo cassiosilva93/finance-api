@@ -1,5 +1,5 @@
-const graphql = {
+const tests = {
   port: process.env.API_GRAPHQL_PORT || 3000,
 };
 
-export default graphql;
+export default tests;
