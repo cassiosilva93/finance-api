@@ -23,6 +23,7 @@ describe('Update transaction', () => {
       const transaction = createTransactionEntity({
         type: transactionFixture.type.valid.income,
         value: transactionFixture.value.valid,
+        userId: 'user_id',
       });
       const resultCreateTransactionUsecase =
         (await createTransactionUsecase.run(
@@ -33,6 +34,7 @@ describe('Update transaction', () => {
           transaction.category,
           transaction.created_at,
           transaction.updated_at,
+          transaction.user_id,
         )) as TransactionEntity;
       const newData = {
         id: resultCreateTransactionUsecase?.id,
@@ -67,6 +69,7 @@ describe('Update transaction', () => {
         const transaction = createTransactionEntity({
           type: transactionFixture.type.invalid,
           value: transactionFixture.value.valid,
+          userId: 'user_id',
         });
         const resultCreateTransactionUsecase =
           (await createTransactionUsecase.run(
@@ -77,6 +80,7 @@ describe('Update transaction', () => {
             transaction.category,
             transaction.created_at,
             transaction.updated_at,
+            transaction.user_id,
           )) as TransactionEntity;
         const newData = {
           id: resultCreateTransactionUsecase?.id,
@@ -111,6 +115,7 @@ describe('Update transaction', () => {
         const transaction = createTransactionEntity({
           type: transactionFixture.type.valid.income,
           value: transactionFixture.value.invalid,
+          userId: 'user_id',
         });
         const resultCreateTransactionUsecase =
           (await createTransactionUsecase.run(
@@ -121,6 +126,7 @@ describe('Update transaction', () => {
             transaction.category,
             transaction.created_at,
             transaction.updated_at,
+            transaction.user_id,
           )) as TransactionEntity;
         const newData = {
           id: resultCreateTransactionUsecase?.id,

@@ -15,17 +15,20 @@ model Transactions {
   category   String
   created_at DateTime
   updated_at DateTime
+  user_id    String?
+  users      Users?   @relation(fields: [user_id], references: [id])
 
   @@map("transactions")
 }
 
 model Users {
-  id         String   @id
-  name       String
-  email      String   @unique
-  password   String
-  created_at DateTime
-  updated_at DateTime
+  id           String         @id
+  name         String
+  email        String         @unique
+  password     String
+  created_at   DateTime
+  updated_at   DateTime
+  transactions Transactions[]
 
   @@map("users")
 }

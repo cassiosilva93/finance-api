@@ -7,7 +7,10 @@ import { Readable } from 'stream';
 export default class InsertFileDataInDatabase {
   constructor(private readonly createTransactionUsecase: any) {}
 
-  private async insertLines(lines: readline.Interface): Promise<void> {
+  private async insertLines(
+    lines: readline.Interface,
+    userId: string,
+  ): Promise<void> {
     for await (const line of lines) {
       const lineSplited = String(line).split(',');
       const transaction = {
@@ -18,6 +21,7 @@ export default class InsertFileDataInDatabase {
         category: lineSplited[3],
         created_at: new Date(),
         updated_at: new Date(),
+        user_id: userId,
       };
       await this.createTransactionUsecase.run(
         transaction.id,
@@ -27,11 +31,12 @@ export default class InsertFileDataInDatabase {
         transaction.category,
         transaction.created_at,
         transaction.updated_at,
+        transaction.user_id,
       );
     }
   }
 
-  public async run(filename: string): Promise<boolean | Error> {
+  public async run(filename: string, userId: string): Promise<boolean | Error> {
     try {
       const filePath = path.resolve(
         __dirname,
@@ -50,7 +55,7 @@ export default class InsertFileDataInDatabase {
       const transactionsLine = readline.createInterface({
         input: readableLine,
       });
-      await this.insertLines(transactionsLine);
+      await this.insertLines(transactionsLine, userId);
       return true;
     } catch (error) {
       throw new Error('error inserting file information into database');

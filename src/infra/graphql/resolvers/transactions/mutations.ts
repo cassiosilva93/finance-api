@@ -17,6 +17,7 @@ const mutations = {
     context: any,
   ) => {
     if (context.token instanceof Unauthorized) return new Unauthorized();
+    const userId = context.token.id;
     const createTransactionUsecase = new CreateTransactionUsecase(
       transactionRepository,
     );
@@ -28,6 +29,7 @@ const mutations = {
       args.data.category,
       new Date(),
       new Date(),
+      userId,
     );
     return newTransaction;
   },

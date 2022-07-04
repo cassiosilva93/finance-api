@@ -13,6 +13,7 @@ export default class PrismaTransaction implements TransactionRepository {
     category: string,
     created_at: Date,
     updated_at: Date,
+    user_id: string,
   ): Promise<TransactionEntity | null> {
     const transaction = await prismaClient.transactions.create({
       data: {
@@ -23,6 +24,7 @@ export default class PrismaTransaction implements TransactionRepository {
         category,
         created_at,
         updated_at,
+        user_id,
       },
     });
     return new TransactionEntity(
@@ -33,11 +35,16 @@ export default class PrismaTransaction implements TransactionRepository {
       transaction.category,
       transaction.created_at,
       transaction.updated_at,
+      transaction.user_id as string,
     );
   }
 
-  async getAll(): Promise<TransactionEntity[] | []> {
-    const transactionsFound = await prismaClient.transactions.findMany();
+  async getAll(userId: string): Promise<TransactionEntity[] | []> {
+    const transactionsFound = await prismaClient.transactions.findMany({
+      where: {
+        user_id: userId,
+      },
+    });
     const transactions = transactionsFound.map(t => {
       return {
         id: t.id,
@@ -47,6 +54,7 @@ export default class PrismaTransaction implements TransactionRepository {
         category: t.category,
         created_at: t.created_at,
         updated_at: t.updated_at,
+        user_id: t.user_id as string,
       };
     });
     return transactions;
@@ -67,6 +75,7 @@ export default class PrismaTransaction implements TransactionRepository {
       category: transactionFound.category,
       created_at: transactionFound.created_at,
       updated_at: transactionFound.updated_at,
+      user_id: transactionFound.user_id as string,
     };
     return transaction;
   }
@@ -88,6 +97,7 @@ export default class PrismaTransaction implements TransactionRepository {
       transactionUpdated?.category as string,
       transactionUpdated?.created_at as Date,
       transactionUpdated?.updated_at as Date,
+      transactionUpdated?.user_id as string,
     );
     return transaction;
   }

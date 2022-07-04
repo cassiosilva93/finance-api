@@ -12,6 +12,7 @@ export default class CreateTransaction {
     category: string,
     created_at: Date,
     updated_at: Date,
+    user_id: string,
   ): Promise<TransactionEntity | Error | null> {
     const transactionOrError = TransactionEntity.create(
       id,
@@ -21,6 +22,7 @@ export default class CreateTransaction {
       category,
       created_at,
       updated_at,
+      user_id,
     );
     if (transactionOrError instanceof Error) return transactionOrError;
     const transaction = await this.transactionRepository.create(
@@ -31,6 +33,7 @@ export default class CreateTransaction {
       category,
       created_at,
       updated_at,
+      user_id,
     );
     if (!transaction) return new Error('create transaction failed');
     return transaction;

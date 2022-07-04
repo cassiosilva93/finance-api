@@ -19,6 +19,7 @@ describe('Transaction entity', () => {
         'any_category',
         created_at,
         updated_at,
+        'any_user_id',
       ) as TransactionEntity;
 
       // Then
@@ -31,6 +32,7 @@ describe('Transaction entity', () => {
         category: 'any_category',
         created_at,
         updated_at,
+        user_id: 'any_user_id',
       });
     });
   });
@@ -46,6 +48,7 @@ describe('Transaction entity', () => {
         'any_category',
         new Date(),
         new Date(),
+        'any_user_id',
       ) as TransactionEntity;
 
       // Then
@@ -62,6 +65,7 @@ describe('Transaction entity', () => {
         'any_category',
         new Date(),
         new Date(),
+        'any_user_id',
       ) as TransactionEntity;
 
       // Then

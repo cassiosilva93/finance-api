@@ -13,6 +13,7 @@ export default class Transaction {
     public readonly category: string,
     public readonly created_at: Date,
     public readonly updated_at: Date,
+    public readonly user_id: string,
   ) {}
 
   static create(
@@ -23,6 +24,7 @@ export default class Transaction {
     category: string,
     created_at: Date,
     updated_at: Date,
+    user_id: string,
   ): Transaction | RequiredProperty | MinimumValue | IncorrectType {
     const typeOrError = TransactionTypeEntity.create(type);
     const valueOrError = TransactionValueEntity.create(value);
@@ -36,6 +38,7 @@ export default class Transaction {
       category,
       created_at,
       updated_at,
+      user_id,
     );
   }
 }

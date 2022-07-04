@@ -9,8 +9,9 @@ export default interface Transaction {
     category: string,
     created_at: Date,
     updated_at: Date,
+    user_id: string,
   ): Promise<TransactionEntity | null>;
-  getAll(): Promise<TransactionEntity[] | []>;
+  getAll(userId: string): Promise<TransactionEntity[] | []>;
   getOne(id: string): Promise<TransactionEntity | null>;
   update(
     id: string,

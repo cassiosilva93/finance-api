@@ -15,7 +15,10 @@ describe('Insert File', () => {
     );
 
     // When
-    await insertFileDataInDatabaseUsecase.run(csvFixture.filename.valid);
+    await insertFileDataInDatabaseUsecase.run(
+      csvFixture.filename.valid,
+      'user_id',
+    );
 
     // Then
     expect(transactionRepository.transactions).toHaveLength(
