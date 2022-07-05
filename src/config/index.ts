@@ -1,13 +1,11 @@
 import 'dotenv/config';
 
-import graphql from './graphql';
 import jwt from './jwt';
-import rest from './rest';
+import server from './server';
 import upload from './upload';
 
 export default {
-  graphql,
-  rest,
+  server,
   upload,
   jwt,
 };

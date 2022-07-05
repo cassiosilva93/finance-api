@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(routes);
 
 async function startApolloServer(typeDefs: string, resolvers: any) {
-  const { port, path } = config.graphql;
+  const { port, path } = config.server;
   const server = new ApolloServer({
     typeDefs,
     resolvers,
