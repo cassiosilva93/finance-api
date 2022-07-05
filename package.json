@@ -5,13 +5,13 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "nodemon --exec ts-node -r tsconfig-paths/register src/infra/server --ext ts,graphql --inspect --transpile-only --ignore-watch node_modules",
-    "start": "node -r ts-node/register -r tsconfig-paths/register ./dist/src/infra/server",
+    "start": "node dist/infra/server/index.js",
     "lint:fix": "eslint \"**/*.{ts,tsx}\" --fix",
     "lint": "eslint \"**/*.{ts,tsx}\"",
     "test:watch": "jest --watch --runInBand",
     "test:coverage": "jest --coverage --runInBand",
     "test": "jest --runInBand",
-    "build": "tsc",
+    "build": "npx ttsc --p ./tsconfig.json",
     "prisma:seed": "npx prisma db seed",
     "prisma:migrate": "npx prisma migrate dev"
   },
@@ -34,6 +34,7 @@
     "@types/node": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.28.0",
     "@typescript-eslint/parser": "^5.28.0",
+    "@zerollup/ts-transform-paths": "^1.7.18",
     "eslint": "^8.18.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.5.0",
@@ -43,12 +44,13 @@
     "jest": "^28.1.1",
     "nodemon": "^2.0.16",
     "prettier": "^2.7.1",
-    "prisma": "^3.15.2",
     "ts-jest": "^28.0.5",
     "ts-node": "^10.8.1",
     "ts-node-dev": "^2.0.0",
     "tsconfig-paths": "^3.14.1",
-    "typescript": "^4.7.4"
+    "ttypescript": "^1.5.13",
+    "typescript": "^4.7.4",
+    "typescript-transform-paths": "^3.3.1"
   },
   "dependencies": {
     "@faker-js/faker": "^7.3.0",
@@ -66,6 +68,7 @@
     "jsonwebtoken": "^8.5.1",
     "lint-staged": "^13.0.2",
     "merge-graphql-schemas": "^1.7.8",
-    "multer": "*"
+    "multer": "*",
+    "prisma": "^3.15.2"
   }
 }

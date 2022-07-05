@@ -35,8 +35,13 @@
     "paths": {
       "@src/*": ["src/*"],
       "@tests/*": ["__tests__/*"]
-    }
+    },
+    "plugins": [
+      {
+        "transform": "typescript-transform-paths"
+      }
+    ]
   },
   "include": ["src/**/*", "__tests__/**/*"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "__tests__", "dist"]
 }
