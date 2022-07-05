@@ -1,7 +1,7 @@
-import PasswordEntity from '@src/domain/entities/Password';
-import MinLengthPassword from '@src/domain/errors/MinLengthPassword';
-import RequiredProperty from '@src/domain/errors/RequiredProperty';
-import userFixture from '@tests/fixtures/user';
+import PasswordEntity from '../../../src/domain/entities/Password';
+import MinLengthPassword from '../../../src/domain/errors/MinLengthPassword';
+import RequiredProperty from '../../../src/domain/errors/RequiredProperty';
+import userFixture from '../../fixtures/user';
 
 describe('Password entity', () => {
   describe('Success', () => {

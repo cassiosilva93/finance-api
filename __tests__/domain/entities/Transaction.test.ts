@@ -1,7 +1,7 @@
-import TransactionEntity from '@src/domain/entities/Transaction';
-import TransactionTypeEntity from '@src/domain/entities/TransactionType';
-import TransactionValueEntity from '@src/domain/entities/TransactionValue';
-import transactionFixture from '@tests/fixtures/transaction';
+import TransactionEntity from '../../../src/domain/entities/Transaction';
+import TransactionTypeEntity from '../../../src/domain/entities/TransactionType';
+import TransactionValueEntity from '../../../src/domain/entities/TransactionValue';
+import transactionFixture from '../../fixtures/transaction';
 
 describe('Transaction entity', () => {
   describe('Success', () => {

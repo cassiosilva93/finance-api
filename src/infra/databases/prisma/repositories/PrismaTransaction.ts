@@ -1,7 +1,7 @@
-import TransactionRepository from '@src/application/repositories/Transaction';
-import TransactionEntity from '@src/domain/entities/Transaction';
-import TransactionTypeEntity from '@src/domain/entities/TransactionType';
-import TransactionValueEntity from '@src/domain/entities/TransactionValue';
+import TransactionRepository from '../../../../application/repositories/Transaction';
+import TransactionEntity from '../../../../domain/entities/Transaction';
+import TransactionTypeEntity from '../../../../domain/entities/TransactionType';
+import TransactionValueEntity from '../../../../domain/entities/TransactionValue';
 import prismaClient from '../prismaClient';
 
 export default class PrismaTransaction implements TransactionRepository {

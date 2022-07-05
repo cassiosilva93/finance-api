@@ -1,4 +1,4 @@
-import StorageAdapter from '@src/adapter/ports/Storage';
+import StorageAdapter from '../../../adapter/ports/Storage';
 
 export default class SaveFile {
   constructor(private readonly storageProvider: StorageAdapter) {}

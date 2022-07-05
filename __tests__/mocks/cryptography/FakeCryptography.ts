@@ -1,4 +1,4 @@
-import CryptographyAdapter from '@src/adapter/ports/Cryptography';
+import CryptographyAdapter from '../../../src/adapter/ports/Cryptography';
 
 export default class FakeCryptography implements CryptographyAdapter {
   private FAKE_SALT = 'FAKECRYPTOGRAPHY';

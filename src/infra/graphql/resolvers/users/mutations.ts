@@ -1,8 +1,8 @@
-import { CreateUserUsecase } from '@src/application/usecases/users';
-import Unauthorized from '@src/domain/errors/Unauthorized';
-import BcryptCryptography from '@src/infra/cryptography/BcryptCryptography';
-import PrismaUserRepository from '@src/infra/databases/prisma/repositories/PrismaUser';
 import { randomUUID } from 'crypto';
+import { CreateUserUsecase } from '../../../../application/usecases/users';
+import Unauthorized from '../../../../domain/errors/Unauthorized';
+import BcryptCryptography from '../../../../infra/cryptography/BcryptCryptography';
+import PrismaUserRepository from '../../../../infra/databases/prisma/repositories/PrismaUser';
 
 const userRepository = new PrismaUserRepository();
 const cryptography = new BcryptCryptography();

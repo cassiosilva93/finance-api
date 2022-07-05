@@ -1,17 +1,17 @@
-import BadRequest from '@src/adapter/ports/httpResponse/BadRequest';
-import Created from '@src/adapter/ports/httpResponse/Created';
-import ServerError from '@src/adapter/ports/httpResponse/ServerError';
-import Unauthorized from '@src/adapter/ports/httpResponse/Unauthorized';
-import AuthMiddleware from '@src/application/middlewares/Auth';
+import BadRequest from '../../../adapter/ports/httpResponse/BadRequest';
+import Created from '../../../adapter/ports/httpResponse/Created';
+import ServerError from '../../../adapter/ports/httpResponse/ServerError';
+import Unauthorized from '../../../adapter/ports/httpResponse/Unauthorized';
+import AuthMiddleware from '../../../application/middlewares/Auth';
 import {
   InsertFileDataInDatabaseUsecase,
   SaveFileUsecase,
-} from '@src/application/usecases/files';
-import { CreateTransactionUsecase } from '@src/application/usecases/transactions';
-import config from '@src/config';
-import JwtToken from '@src/infra/cryptography/JwtToken';
-import PrismaTransactionRepository from '@src/infra/databases/prisma/repositories/PrismaTransaction';
-import DiskStorage from '@src/infra/storage/Disk';
+} from '../../../application/usecases/files';
+import { CreateTransactionUsecase } from '../../../application/usecases/transactions';
+import config from '../../../config';
+import JwtToken from '../../../infra/cryptography/JwtToken';
+import PrismaTransactionRepository from '../../../infra/databases/prisma/repositories/PrismaTransaction';
+import DiskStorage from '../../../infra/storage/Disk';
 
 export default class File {
   static async handle(request: any) {
