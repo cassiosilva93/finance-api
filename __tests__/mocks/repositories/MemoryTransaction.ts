@@ -1,7 +1,7 @@
-import TransactionRepository from '../../../src/application/repositories/Transaction';
-import TransactionEntity from '../../../src/domain/entities/Transaction';
-import TransactionTypeEntity from '../../../src/domain/entities/TransactionType';
-import TransactionValueEntity from '../../../src/domain/entities/TransactionValue';
+import TransactionRepository from '@src/application/repositories/Transaction';
+import TransactionEntity from '@src/domain/entities/Transaction';
+import TransactionTypeEntity from '@src/domain/entities/TransactionType';
+import TransactionValueEntity from '@src/domain/entities/TransactionValue';
 
 export default class MemoryTransaction implements TransactionRepository {
   public transactions: TransactionEntity[];

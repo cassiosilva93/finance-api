@@ -1,6 +1,6 @@
+import config from '@src/config';
 import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
-import config from '../../config';
 import context from '../graphql/context';
 import routes from '../rest/routes';
 

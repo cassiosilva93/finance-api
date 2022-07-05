@@ -1,6 +1,6 @@
-import TransactionValueEntity from '../../../src/domain/entities/TransactionValue';
-import MinimumValue from '../../../src/domain/errors/MinimumValue';
-import transactionFixture from '../../fixtures/transaction';
+import TransactionValueEntity from '@src/domain/entities/TransactionValue';
+import MinimumValue from '@src/domain/errors/MinimumValue';
+import transactionFixture from '@tests/fixtures/transaction';
 
 describe('TransactionValue entity', () => {
   describe('Success', () => {
