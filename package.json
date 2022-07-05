@@ -34,7 +34,6 @@
     "@types/node": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.28.0",
     "@typescript-eslint/parser": "^5.28.0",
-    "@zerollup/ts-transform-paths": "^1.7.18",
     "eslint": "^8.18.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.5.0",
@@ -46,29 +45,24 @@
     "prettier": "^2.7.1",
     "ts-jest": "^28.0.5",
     "ts-node": "^10.8.1",
-    "ts-node-dev": "^2.0.0",
     "tsconfig-paths": "^3.14.1",
     "typescript": "^4.7.4"
   },
   "dependencies": {
     "@faker-js/faker": "^7.3.0",
     "@prisma/client": "^3.15.2",
-    "apollo-server": "^3.9.0",
-    "apollo-server-core": "^3.9.0",
     "apollo-server-express": "^3.9.0",
-    "ttypescript": "^1.5.13",
-    "typescript-transform-paths": "^3.3.1",
     "bcrypt": "^5.0.1",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "express-graphql": "^0.12.0",
     "graphql": "^15.8.0",
-    "graphql-tools": "^5.0.0",
     "husky": "^8.0.1",
     "jsonwebtoken": "^8.5.1",
     "lint-staged": "^13.0.2",
     "merge-graphql-schemas": "^1.7.8",
     "multer": "*",
-    "prisma": "^3.15.2"
+    "prisma": "^3.15.2",
+    "ttypescript": "^1.5.13",
+    "typescript-transform-paths": "^3.3.1"
   }
 }
