@@ -1,7 +1,7 @@
-import config from '@src/config';
 import fs from 'fs';
 import path from 'path';
 import StorageAdapter from '../../adapter/ports/Storage';
+import config from '../../config';
 
 export default class Disk implements StorageAdapter {
   public async saveFile(filename: string): Promise<boolean | Error> {

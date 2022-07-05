@@ -1,5 +1,5 @@
-import CryptographyAdapter from '@src/adapter/ports/Cryptography';
 import bcrypt from 'bcrypt';
+import CryptographyAdapter from '../../adapter/ports/Cryptography';
 
 export default class BcryptCryptography implements CryptographyAdapter {
   private SALT_ROUNDS = 10;

@@ -1,11 +1,11 @@
-import CreateUserUsecase from '@src/application/usecases/users/CreateUser';
-import LoginUsecase from '@src/application/usecases/users/Login';
-import IncorrectEmailOrPassword from '@src/domain/errors/IncorrectEmailOrPassword';
-import createUserFactory from '@tests/factories/createUser';
-import userFixture from '@tests/fixtures/user';
-import FakeCryptography from '@tests/mocks/cryptography/FakeCryptography';
-import FakeToken from '@tests/mocks/cryptography/FakeToken';
-import MemoryUserRepository from '@tests/mocks/repositories/MemoryUser';
+import CreateUserUsecase from '../../../../src/application/usecases/users/CreateUser';
+import LoginUsecase from '../../../../src/application/usecases/users/Login';
+import IncorrectEmailOrPassword from '../../../../src/domain/errors/IncorrectEmailOrPassword';
+import createUserFactory from '../../../factories/createUser';
+import userFixture from '../../../fixtures/user';
+import FakeCryptography from '../../../mocks/cryptography/FakeCryptography';
+import FakeToken from '../../../mocks/cryptography/FakeToken';
+import MemoryUserRepository from '../../../mocks/repositories/MemoryUser';
 
 describe('Login', () => {
   const userRepository = new MemoryUserRepository();

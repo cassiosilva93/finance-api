@@ -1,9 +1,9 @@
-import { SaveFileUsecase } from '@src/application/usecases/files';
-import DiskStorage from '@src/infra/storage/Disk';
-import csvFixture from '@tests/fixtures/file';
-import ManipulateFile from '@tests/utils/ManipulateFile';
 import fs from 'fs';
 import path from 'path';
+import { SaveFileUsecase } from '../../../../src/application/usecases/files';
+import DiskStorage from '../../../../src/infra/storage/Disk';
+import csvFixture from '../../../fixtures/file';
+import ManipulateFile from '../../../utils/ManipulateFile';
 
 describe.skip('Save File', () => {
   const manipulateFile = new ManipulateFile();
