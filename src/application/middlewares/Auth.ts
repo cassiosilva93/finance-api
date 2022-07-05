@@ -1,7 +1,7 @@
-import IHeader from '../../adapter/ports/httpRequest/Header';
-import IPayload from '../../adapter/ports/token/Payload';
-import TokenAdapter from '../../adapter/ports/token/Token';
-import Unauthorized from '../../domain/errors/Unauthorized';
+import IHeader from '@src/adapter/ports/httpRequest/Header';
+import IPayload from '@src/adapter/ports/token/Payload';
+import TokenAdapter from '@src/adapter/ports/token/Token';
+import Unauthorized from '@src/domain/errors/Unauthorized';
 
 export default class Auth {
   constructor(private readonly token: TokenAdapter) {}

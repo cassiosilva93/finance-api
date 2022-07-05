@@ -1,6 +1,6 @@
-import IPayload from '../../../src/adapter/ports/token/Payload';
-import TokenAdapter from '../../../src/adapter/ports/token/Token';
-import config from '../../../src/config';
+import IPayload from '@src/adapter/ports/token/Payload';
+import TokenAdapter from '@src/adapter/ports/token/Token';
+import config from '@src/config';
 
 export default class FakeToken implements TokenAdapter {
   async encrypt(plaintext: { id: string }, _: string): Promise<string> {

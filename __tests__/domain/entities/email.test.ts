@@ -1,8 +1,8 @@
-import EmailEntity from '../../../src/domain/entities/Email';
-import InvalidEmail from '../../../src/domain/errors/InvalidEmail';
-import MaxLengthEmail from '../../../src/domain/errors/MaxLengthEmail';
-import RequiredProperty from '../../../src/domain/errors/RequiredProperty';
-import userFixture from '../../fixtures/user';
+import EmailEntity from '@src/domain/entities/Email';
+import InvalidEmail from '@src/domain/errors/InvalidEmail';
+import MaxLengthEmail from '@src/domain/errors/MaxLengthEmail';
+import RequiredProperty from '@src/domain/errors/RequiredProperty';
+import userFixture from '@tests/fixtures/user';
 
 describe('Email entity', () => {
   describe('Success', () => {
