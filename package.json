@@ -6,6 +6,7 @@
   "scripts": {
     "graphql:dev": "nodemon --exec ts-node -r tsconfig-paths/register src/infra/graphql/server --ext ts,graphql --inspect --transpile-only --ignore-watch node_modules",
     "rest:dev": "nodemon --exec ts-node -r tsconfig-paths/register src/infra/rest/server --ext ts,graphql --inspect --transpile-only --ignore-watch node_modules",
+    "start": "node -r ts-node/register -r tsconfig-paths/register ./dist/src/infra/graphql/server",
     "lint:fix": "eslint \"**/*.{ts,tsx}\" --fix",
     "lint": "eslint \"**/*.{ts,tsx}\"",
     "test:watch": "jest --watch --runInBand",
