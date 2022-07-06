@@ -16,7 +16,7 @@
     "prisma:migrate": "npx prisma migrate dev"
   },
   "keywords": [],
-  "author": "",
+  "author": "Cassio Oliveira Silva",
   "license": "ISC",
   "prisma": {
     "schema": "src/infra/databases/prisma/schema.prisma"
