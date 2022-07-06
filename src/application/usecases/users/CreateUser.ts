@@ -1,9 +1,9 @@
-import CryptographyAdapter from '@src/adapter/ports/Cryptography';
-import UserRepository from '@src/application/repositories/User';
-import { CreateUserOutputDTO } from '@src/domain/dtos/CreateUserOutput';
-import { UserDTO } from '@src/domain/dtos/User';
-import UserEntity from '@src/domain/entities/User';
-import AlreadyExists from '@src/domain/errors/AlreadyExists';
+import CryptographyAdapter from '../../../adapter/ports/Cryptography';
+import UserRepository from '../../../application/repositories/User';
+import { CreateUserOutputDTO } from '../../../domain/dtos/CreateUserOutput';
+import { UserDTO } from '../../../domain/dtos/User';
+import UserEntity from '../../../domain/entities/User';
+import AlreadyExists from '../../../domain/errors/AlreadyExists';
 
 export default class CreateUser {
   constructor(

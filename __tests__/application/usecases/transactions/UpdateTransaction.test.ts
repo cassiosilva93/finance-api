@@ -1,13 +1,13 @@
 import {
   CreateTransactionUsecase,
   UpdateTransactionUsecase,
-} from '@src/application/usecases/transactions';
-import TransactionEntity from '@src/domain/entities/Transaction';
-import IncorrectType from '@src/domain/errors/IncorrectType';
-import MinimumValue from '@src/domain/errors/MinimumValue';
-import createTransactionEntity from '@tests/factories/createTransaction';
-import transactionFixture from '@tests/fixtures/transaction';
-import MemoryTransactionRepository from '@tests/mocks/repositories/MemoryTransaction';
+} from '../../../../src/application/usecases/transactions';
+import TransactionEntity from '../../../../src/domain/entities/Transaction';
+import IncorrectType from '../../../../src/domain/errors/IncorrectType';
+import MinimumValue from '../../../../src/domain/errors/MinimumValue';
+import createTransactionEntity from '../../../factories/createTransaction';
+import transactionFixture from '../../../fixtures/transaction';
+import MemoryTransactionRepository from '../../../mocks/repositories/MemoryTransaction';
 
 describe('Update transaction', () => {
   describe('Success', () => {

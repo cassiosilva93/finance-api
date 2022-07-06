@@ -1,11 +1,11 @@
 import {
   CreateTransactionUsecase,
   GetOneTransactionUsecase,
-} from '@src/application/usecases/transactions';
-import TransactionEntity from '@src/domain/entities/Transaction';
-import createTransactionFactory from '@tests/factories/createTransaction';
-import transactionFixture from '@tests/fixtures/transaction';
-import MemoryTransactionRepository from '@tests/mocks/repositories/MemoryTransaction';
+} from '../../../../src/application/usecases/transactions';
+import TransactionEntity from '../../../../src/domain/entities/Transaction';
+import createTransactionFactory from '../../../factories/createTransaction';
+import transactionFixture from '../../../fixtures/transaction';
+import MemoryTransactionRepository from '../../../mocks/repositories/MemoryTransaction';
 
 describe('Get one transaction', () => {
   describe('Success', () => {

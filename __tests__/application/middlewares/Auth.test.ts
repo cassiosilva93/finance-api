@@ -1,7 +1,7 @@
-import IHeader from '@src/adapter/ports/httpRequest/Header';
-import AuthMiddleware from '@src/application/middlewares/Auth';
-import Unauthorized from '@src/domain/errors/Unauthorized';
-import FakeToken from '@tests/mocks/cryptography/FakeToken';
+import IHeader from '../../../src/adapter/ports/httpRequest/Header';
+import AuthMiddleware from '../../../src/application/middlewares/Auth';
+import Unauthorized from '../../../src/domain/errors/Unauthorized';
+import FakeToken from '../../mocks/cryptography/FakeToken';
 
 describe('Auth middleware', () => {
   describe('Success', () => {
