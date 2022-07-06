@@ -21,6 +21,9 @@
   "prisma": {
     "schema": "src/infra/databases/prisma/schema.prisma"
   },
+  "engines": {
+    "node": "16.0.0"
+  },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.13",
