@@ -11,9 +11,9 @@
     "test:watch": "jest --watch --runInBand",
     "test:coverage": "jest --coverage --runInBand",
     "test": "jest --runInBand",
-    "build": "npx ttsc --p ./tsconfig.json",
     "prisma:seed": "npx prisma db seed",
-    "prisma:migrate": "npx prisma migrate dev"
+    "prisma:migrate": "npx prisma migrate dev",
+    "postinstall": "npx ttsc --p ./tsconfig.json"
   },
   "keywords": [],
   "author": "",
