@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es2016",
-    "lib": ["es2016"],
+    "target": "es2022",
+    "lib": ["es2022"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "module": "commonjs",
@@ -42,6 +42,6 @@
       }
     ]
   },
-  "include": ["src/**/*", "__tests__/**/*"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
 }
