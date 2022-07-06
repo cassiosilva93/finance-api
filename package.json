@@ -61,7 +61,7 @@
     "jsonwebtoken": "^8.5.1",
     "lint-staged": "^13.0.2",
     "merge-graphql-schemas": "^1.7.8",
-    "multer": "*",
+    "multer": "^1.4.4",
     "prisma": "^3.15.2",
     "ttypescript": "^1.5.13",
     "typescript-transform-paths": "^3.3.1"
