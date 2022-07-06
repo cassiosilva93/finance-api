@@ -1,6 +1,6 @@
-import EmailEntity from '../../../src/domain/entities/Email';
-import PasswordEntity from '../../../src/domain/entities/Password';
-import UserEntity from '../../../src/domain/entities/User';
+import EmailEntity from '@src/domain/entities/Email';
+import PasswordEntity from '@src/domain/entities/Password';
+import UserEntity from '@src/domain/entities/User';
 
 describe('User entity', () => {
   describe('Success', () => {

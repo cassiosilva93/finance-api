@@ -1,8 +1,8 @@
-import LoginUsecase from '../../../../application/usecases/users/Login';
-import config from '../../../../config';
-import BcryptCryptography from '../../../../infra/cryptography/BcryptCryptography';
-import JwtToken from '../../../../infra/cryptography/JwtToken';
-import PrismaUserRepository from '../../../../infra/databases/prisma/repositories/PrismaUser';
+import LoginUsecase from '@src/application/usecases/users/Login';
+import config from '@src/config';
+import BcryptCryptography from '@src/infra/cryptography/BcryptCryptography';
+import JwtToken from '@src/infra/cryptography/JwtToken';
+import PrismaUserRepository from '@src/infra/databases/prisma/repositories/PrismaUser';
 
 const userRepository = new PrismaUserRepository();
 const cryptography = new BcryptCryptography();

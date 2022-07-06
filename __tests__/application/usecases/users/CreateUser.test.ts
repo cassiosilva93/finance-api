@@ -1,12 +1,12 @@
-import { CreateUserUsecase } from '../../../../src/application/usecases/users';
-import { UserDTO } from '../../../../src/domain/dtos/User';
-import EmailEntity from '../../../../src/domain/entities/Email';
-import AlreadyExists from '../../../../src/domain/errors/AlreadyExists';
-import InvalidEmail from '../../../../src/domain/errors/InvalidEmail';
-import createUserFactory from '../../../factories/createUser';
-import userFixture from '../../../fixtures/user';
-import FakeCryptography from '../../../mocks/cryptography/FakeCryptography';
-import MemoryUserRepository from '../../../mocks/repositories/MemoryUser';
+import { CreateUserUsecase } from '@src/application/usecases/users';
+import { UserDTO } from '@src/domain/dtos/User';
+import EmailEntity from '@src/domain/entities/Email';
+import AlreadyExists from '@src/domain/errors/AlreadyExists';
+import InvalidEmail from '@src/domain/errors/InvalidEmail';
+import createUserFactory from '@tests/factories/createUser';
+import userFixture from '@tests/fixtures/user';
+import FakeCryptography from '@tests/mocks/cryptography/FakeCryptography';
+import MemoryUserRepository from '@tests/mocks/repositories/MemoryUser';
 
 describe('Create User', () => {
   const cryptography = new FakeCryptography();
