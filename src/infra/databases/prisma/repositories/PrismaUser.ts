@@ -1,7 +1,7 @@
-import UserRepository from '../../../../application/repositories/User';
-import EmailEntity from '../../../../domain/entities/Email';
-import PasswordEntity from '../../../../domain/entities/Password';
-import UserEntity from '../../../../domain/entities/User';
+import UserRepository from '@src/application/repositories/User';
+import EmailEntity from '@src/domain/entities/Email';
+import PasswordEntity from '@src/domain/entities/Password';
+import UserEntity from '@src/domain/entities/User';
 import prismaClient from '../prismaClient';
 
 export default class PrismaUser implements UserRepository {

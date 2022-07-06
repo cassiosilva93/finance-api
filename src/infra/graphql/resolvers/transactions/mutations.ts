@@ -1,12 +1,12 @@
-import { randomUUID } from 'crypto';
 import {
   CreateTransactionUsecase,
   DeleteTransactionUsecase,
   UpdateTransactionUsecase,
-} from '../../../../application/usecases/transactions';
-import TransactionEntity from '../../../../domain/entities/Transaction';
-import Unauthorized from '../../../../domain/errors/Unauthorized';
-import PrismaTransactionRepository from '../../../../infra/databases/prisma/repositories/PrismaTransaction';
+} from '@src/application/usecases/transactions';
+import TransactionEntity from '@src/domain/entities/Transaction';
+import Unauthorized from '@src/domain/errors/Unauthorized';
+import PrismaTransactionRepository from '@src/infra/databases/prisma/repositories/PrismaTransaction';
+import { randomUUID } from 'crypto';
 
 const transactionRepository = new PrismaTransactionRepository();
 

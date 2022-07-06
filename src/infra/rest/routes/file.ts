@@ -1,7 +1,7 @@
+import uploadConfig from '@src/config/upload';
+import ExpressAdapter from '@src/infra/http/Express';
 import express from 'express';
 import multer from 'multer';
-import uploadConfig from '../../../config/upload';
-import ExpressAdapter from '../../../infra/http/Express';
 import FileController from '../controllers/File';
 
 const router = express.Router();

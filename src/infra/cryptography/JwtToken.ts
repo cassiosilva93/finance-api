@@ -1,6 +1,6 @@
+import IPayload from '@src/adapter/ports/token/Payload';
+import TokenAdapter from '@src/adapter/ports/token/Token';
 import jwt from 'jsonwebtoken';
-import IPayload from '../../adapter/ports/token/Payload';
-import TokenAdapter from '../../adapter/ports/token/Token';
 
 export default class JwtToken implements TokenAdapter {
   constructor(private readonly secret: string) {}
