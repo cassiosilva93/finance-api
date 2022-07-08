@@ -45,7 +45,7 @@ export default class PrismaTransaction implements TransactionRepository {
         user_id: userId,
       },
     });
-    const transactions = transactionsFound.map((t): any => {
+    const transactions = transactionsFound.map((t: any) => {
       return {
         id: t.id,
         title: t.title,
