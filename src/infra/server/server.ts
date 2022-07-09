@@ -1,11 +1,13 @@
 import config from '@src/config';
 import { ApolloServer } from 'apollo-server-express';
+import cors from 'cors';
 import express from 'express';
 import context from '../graphql/context';
 import routes from '../rest/routes';
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 app.use(routes);
 
 app.get('/health', (_, res) => res.send({ message: 'ok' }));
