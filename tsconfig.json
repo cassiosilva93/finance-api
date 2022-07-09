@@ -36,6 +36,9 @@
       "@src/*": ["src/*"],
       "@tests/*": ["__tests__/*"]
     },
+    "types": [
+      "node"
+    ],
     "plugins": [
       {
         "transform": "typescript-transform-paths"
