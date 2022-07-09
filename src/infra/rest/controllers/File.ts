@@ -1,4 +1,4 @@
-import BadRequest from '@src/adapter/ports/httpResponse/BadRequest';
+import BadRequest from '@src/adapter/ports/httpResponse/badRequest';
 import Created from '@src/adapter/ports/httpResponse/Created';
 import ServerError from '@src/adapter/ports/httpResponse/ServerError';
 import Unauthorized from '@src/adapter/ports/httpResponse/Unauthorized';
