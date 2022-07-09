@@ -34,6 +34,14 @@
 
 <br>
 
+## 🎨 Methodologies and Designs
+
+- Clean Architecture
+- DDD
+- SOLID
+
+<br>
+
 ## 🏃 How to execute
 
 Create the .env file with the same variables as the .env.example file.
