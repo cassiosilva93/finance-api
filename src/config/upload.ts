@@ -9,7 +9,7 @@ interface IUploadConfig {
   multer: { storage: StorageEngine };
 }
 
-const tempFolder = path.resolve(__dirname, '..', '..', 'temp');
+const tempFolder = path.resolve(__dirname, '..', 'temp');
 
 const upload: IUploadConfig = {
   driver: process.env.STORAGE_DRIVER,
