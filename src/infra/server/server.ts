@@ -8,6 +8,8 @@ const app = express();
 app.use(express.json());
 app.use(routes);
 
+app.get('/health', (_, res) => res.send({ message: 'ok' }));
+
 async function startApolloServer(typeDefs: string, resolvers: any) {
   const { port, path } = config.server;
   const server = new ApolloServer({
