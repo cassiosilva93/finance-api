@@ -1,7 +1,7 @@
 <h1 align="center">
     <img src="https://i.ibb.co/pzbWcrM/finance-api-logo.png" alt="finance-api-logo" border="0">
     <br>
-    Your api to manage your financial life
+    🌟 Your api to manage your financial life
 </h1>
 
 <div align="center">
