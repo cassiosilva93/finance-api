@@ -61,7 +61,7 @@ $ npm install
 Execute migrations
 
 ```bash
-$ npm run migrate
+$ npm run prisma:migrate
 ```
 
 Start server:
