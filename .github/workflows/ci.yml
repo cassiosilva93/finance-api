@@ -5,9 +5,17 @@ on: pull_request
 env:
   NODE_VERSION: 16.0.0
 
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
 jobs:
   test-build:
-    name: Test & Lint
+    name: Test
     runs-on: ubuntu-latest
 
     steps:
