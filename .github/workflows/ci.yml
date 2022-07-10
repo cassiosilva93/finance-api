@@ -36,5 +36,5 @@ jobs:
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_hey: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: 'intw-finance-api'
-          heroku_email: 'cassiointw1993@gmail.com'
+          heroku_app_name: "intw-finance-api"
+          heroku_email: "cassiointw1993@gmail.com"
