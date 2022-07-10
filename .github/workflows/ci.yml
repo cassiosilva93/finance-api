@@ -13,7 +13,7 @@ on:
 
 jobs:
   test-build:
-    name: Test
+    name: Deploy
     runs-on: ubuntu-latest
 
     steps:
@@ -30,3 +30,11 @@ jobs:
 
       - name: Run test with coverage
         run: npm run test:coverage
+
+      - name: Deploy application
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_hey: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: 'intw-finance-api'
+          heroku_email: 'cassiointw1993@gmail.com'
