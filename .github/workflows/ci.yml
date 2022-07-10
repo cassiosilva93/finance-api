@@ -1,7 +1,5 @@
 name: CI
 
-on: pull_request
-
 env:
   NODE_VERSION: 16.0.0
 
