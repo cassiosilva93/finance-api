@@ -5,14 +5,14 @@ import ManipulateFile from '@tests/utils/ManipulateFile';
 import fs from 'fs';
 import path from 'path';
 
-describe.skip('Save File', () => {
+describe('Save File', () => {
   const manipulateFile = new ManipulateFile();
   const { toManipulate } = csvFixture.filename;
-  const rootdir = [__dirname, '..', '..', '..', '..'];
+  const rootdir = [__dirname, '..', '..', '..', '..', 'src', 'temp'];
 
   beforeEach(async () => {
-    const from = path.resolve(...rootdir, 'temp', 'uploads', toManipulate);
-    const to = path.resolve(...rootdir, 'temp', toManipulate);
+    const from = path.resolve(...rootdir, 'uploads', toManipulate);
+    const to = path.resolve(...rootdir, toManipulate);
     await manipulateFile.changeDirectory(from, to);
   });
 
@@ -21,7 +21,7 @@ describe.skip('Save File', () => {
     const filesFounded: string[] = [];
     const diskStorageProvider = new DiskStorage();
     const saveFileUsecase = new SaveFileUsecase(diskStorageProvider);
-    const filePath = path.resolve(...rootdir, 'temp');
+    const filePath = path.resolve(...rootdir);
 
     // When
     await saveFileUsecase.run('test2.csv');
