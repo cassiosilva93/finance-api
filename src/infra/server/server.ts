@@ -1,11 +1,12 @@
 import config from '@src/config';
 import { ApolloServer } from 'apollo-server-express';
+import bodyParser from 'body-parser';
 import express from 'express';
 import context from '../graphql/context';
 import routes from '../rest/routes';
 
 const app = express();
-app.use(express.json());
+app.use(bodyParser.json());
 app.use(routes);
 
 app.get('/health', (_, res) => res.send({ message: 'ok' }));

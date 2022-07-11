@@ -6,7 +6,7 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
   verbose: false,
-  testMatch: ['**/?(*.)+(spec|test).[jt]s?(x)'],
+  testMatch: ['**/__tests__/**/*.test.ts'],
   collectCoverageFrom: [
     '<rootDir>/src/domain/**/*.ts',
     '<rootDir>/src/application/**/*.ts',
