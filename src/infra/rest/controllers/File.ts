@@ -38,6 +38,6 @@ export default class File {
       token.id,
     );
     if (insertFileResult instanceof Error) return new ServerError();
-    return new Created({ message: `${originalname} updated successfully` });
+    return new Created({ message: `${originalname} uploaded successfully` });
   }
 }
