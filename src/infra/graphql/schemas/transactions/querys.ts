@@ -4,6 +4,7 @@ const querys = gql`
   type Query {
     getTransactions: [Transaction]!
     getTransaction(id: String!): Transaction
+    getConsolidedValues: ConsolidedValues
   }
 `;
 

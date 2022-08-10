@@ -13,6 +13,13 @@ const inputsAndTypes = gql`
     updated_at: Date
   }
 
+  type ConsolidedValues {
+    totalIncome: Float
+    totalOutcome: Float
+    totalTransactionRegister: Int
+    lastTransactionRegistered: Date
+  }
+
   input TransactionInput {
     title: String
     type: String
