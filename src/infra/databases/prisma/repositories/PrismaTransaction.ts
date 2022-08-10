@@ -1,7 +1,7 @@
-import TransactionRepository from '@src/application/repositories/Transaction';
-import TransactionEntity from '@src/domain/entities/Transaction';
-import TransactionTypeEntity from '@src/domain/entities/TransactionType';
-import TransactionValueEntity from '@src/domain/entities/TransactionValue';
+import TransactionRepository from '../../../../application/repositories/Transaction';
+import TransactionEntity from '../../../../domain/entities/Transaction';
+import TransactionTypeEntity from '../../../../domain/entities/TransactionType';
+import TransactionValueEntity from '../../../../domain/entities/TransactionValue';
 import prismaClient from '../prismaClient';
 
 export default class PrismaTransaction implements TransactionRepository {
@@ -115,5 +115,43 @@ export default class PrismaTransaction implements TransactionRepository {
       },
     });
     return true;
+  }
+
+  async getConsolidedValues(userId: string): Promise<{
+    totalIncome: number;
+    totalOutcome: number;
+    totalTransactionRegister: number;
+    lastTransactionRegistered: Date;
+  } | null> {
+    const totalIncomeAndOutcome = await prismaClient.transactions.groupBy({
+      by: ['type'],
+      _sum: {
+        value: true,
+      },
+      where: {
+        user_id: userId,
+      },
+    });
+
+    const totalTransactionsRegistered =
+      await prismaClient.transactions.aggregate({
+        _count: {
+          value: true,
+        },
+      });
+
+    const lastTransactionRegistered = await prismaClient.transactions.findMany({
+      orderBy: {
+        created_at: 'desc',
+      },
+    });
+
+    return {
+      totalIncome: totalIncomeAndOutcome[0]?._sum.value as number,
+      totalOutcome: totalIncomeAndOutcome[1]?._sum.value as number,
+      totalTransactionRegister: totalTransactionsRegistered?._count.value,
+      lastTransactionRegistered: lastTransactionRegistered[0]
+        ?.created_at as Date,
+    };
   }
 }
