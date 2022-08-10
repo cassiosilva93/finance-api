@@ -3,7 +3,7 @@ import {
   DeleteTransactionUsecase,
 } from '@src/application/usecases/transactions';
 import Transaction from '@src/domain/entities/Transaction';
-import createTransactionFactory from '@tests/factories/createTransaction';
+import { createTransaction as createTransactionFactory } from '@tests/factories/createTransaction';
 import transactionFixture from '@tests/fixtures/transaction';
 import MemoryTransactionRepository from '@tests/mocks/repositories/MemoryTransaction';
 
