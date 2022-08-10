@@ -5,6 +5,7 @@ interface ICreateTransactionParams {
   type: string;
   value: number;
   userId: string;
+  quantityRegisters?: number;
 }
 
 const createTransaction = ({
@@ -25,4 +26,27 @@ const createTransaction = ({
   return transaction;
 };
 
-export default createTransaction;
+const createTransactions = ({
+  type,
+  value,
+  userId,
+  quantityRegisters = 0,
+}: ICreateTransactionParams) => {
+  let transactions = [];
+  for (let i = 0; i < quantityRegisters; i++) {
+    const transaction = {
+      id: randomUUID(),
+      title: faker.finance.accountName(),
+      type,
+      value,
+      category: faker.finance.bic(),
+      created_at: faker.date.past(),
+      updated_at: faker.date.past(),
+      user_id: userId,
+    };
+    transactions.push(transaction);
+  }
+  return transactions;
+};
+
+export { createTransaction, createTransactions };
