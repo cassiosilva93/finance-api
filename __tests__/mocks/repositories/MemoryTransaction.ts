@@ -1,7 +1,7 @@
 import TransactionRepository from '@src/application/repositories/Transaction';
 import TransactionEntity from '@src/domain/entities/Transaction';
-import TransactionTypeEntity from '@src/domain/entities/TransactionType';
-import TransactionValueEntity from '@src/domain/entities/TransactionValue';
+import { default as TransactionTypeEntity } from '@src/domain/entities/TransactionType';
+import { default as TransactionValueEntity } from '@src/domain/entities/TransactionValue';
 
 export default class MemoryTransaction implements TransactionRepository {
   public transactions: TransactionEntity[];
@@ -41,6 +41,7 @@ export default class MemoryTransaction implements TransactionRepository {
       updated_at: newTransaction.updated_at,
       user_id: newTransaction.user_id,
     });
+
     const transaction = this.transactions.find(t => t.id === id);
     return transaction || null;
   }
@@ -85,5 +86,41 @@ export default class MemoryTransaction implements TransactionRepository {
 
     this.transactions.splice(transactionFound, 1);
     return true;
+  }
+
+  async getConsolidedValues(userId: string): Promise<{
+    totalIncome: number;
+    totalOutcome: number;
+    totalTransactionRegister: number;
+    lastTransactionRegistered: Date;
+  } | null> {
+    if (!this.transactions.length) return null;
+
+    const totalIncome = this.transactions
+      .filter(t => t.user_id === userId && t.type.type === 'income')
+      .map(t => t.value.value)
+      .reduce((previous: number, current: number) => previous + current, 0);
+
+    const totalOutcome = this.transactions
+      .filter(t => t.user_id === userId && t.type.type === 'outcome')
+      .map(t => t.value.value)
+      .reduce((previous: number, current: number) => previous + current, 0);
+
+    const totalTransactionRegister = this.transactions.filter(
+      t => t.user_id === userId,
+    ).length;
+
+    const lastTransactionRegistered = this.transactions
+      .map(t => t.created_at)
+      .reduce((previous: Date, current: Date) =>
+        previous > current ? previous : current,
+      );
+
+    return {
+      totalIncome,
+      totalOutcome,
+      totalTransactionRegister,
+      lastTransactionRegistered,
+    };
   }
 }
