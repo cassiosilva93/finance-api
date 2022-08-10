@@ -18,4 +18,10 @@ export default interface Transaction {
     data: TransactionEntity,
   ): Promise<TransactionEntity | null>;
   delete(id: string): Promise<boolean>;
+  getConsolidedValues(userId: string): Promise<{
+    totalIncome: number;
+    totalOutcome: number;
+    totalTransactionRegister: number;
+    lastTransactionRegistered: Date;
+  } | null>;
 }
