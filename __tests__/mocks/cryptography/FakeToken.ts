@@ -1,10 +1,11 @@
+import Plaintext from '@src/adapter/ports/criptography/Plaintext';
 import IPayload from '@src/adapter/ports/token/Payload';
 import TokenAdapter from '@src/adapter/ports/token/Token';
 import config from '@src/config';
 
 export default class FakeToken implements TokenAdapter {
-  async encrypt(plaintext: { id: string }, _: string): Promise<string> {
-    return Buffer.from(plaintext.id).toString('base64');
+  async encrypt(plaintext: Plaintext, _: string): Promise<string> {
+    return Buffer.from(JSON.stringify(plaintext)).toString('base64');
   }
 
   async decrypt(ciphertext: string): Promise<IPayload | null> {

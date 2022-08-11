@@ -19,8 +19,13 @@ export default class Login {
       user.password.password,
     );
     if (!isPasswordValid) return new IncorrectEmailOrPassword();
+    const userOutput = {
+      id: user.id,
+      name: user.name,
+      email: user.email.email,
+    };
     const token = await this.token.encrypt(
-      { id: user.id },
+      { user: userOutput },
       config.jwt.expiresInDays,
     );
     return token;
