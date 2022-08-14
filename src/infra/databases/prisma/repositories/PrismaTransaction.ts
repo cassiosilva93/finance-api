@@ -146,9 +146,16 @@ export default class PrismaTransaction implements TransactionRepository {
       },
     });
 
+    const totalIncome = totalIncomeAndOutcome.filter(
+      transaction => transaction.type === 'income',
+    );
+    const totalOutcome = totalIncomeAndOutcome.filter(
+      transaction => transaction.type === 'outcome',
+    );
+
     return {
-      totalIncome: totalIncomeAndOutcome[0]?._sum.value as number,
-      totalOutcome: totalIncomeAndOutcome[1]?._sum.value as number,
+      totalIncome: totalIncome[0]?._sum.value as number,
+      totalOutcome: totalOutcome[0]?._sum.value as number,
       totalTransactionRegister: totalTransactionsRegistered?._count.value,
       lastTransactionRegistered: lastTransactionRegistered[0]
         ?.created_at as Date,
