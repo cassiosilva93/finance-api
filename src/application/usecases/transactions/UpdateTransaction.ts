@@ -24,6 +24,14 @@ export default class UpdateTransaction {
       id,
       dataValidated,
     );
-    return transaction;
+    return {
+      id: transaction?.id,
+      title: transaction?.title,
+      type: transaction?.type.type,
+      value: transaction?.value.value,
+      category: transaction?.category,
+      created_at: transaction?.created_at,
+      updated_at: transaction?.updated_at,
+    };
   }
 }

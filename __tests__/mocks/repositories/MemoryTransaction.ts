@@ -73,7 +73,17 @@ export default class MemoryTransaction implements TransactionRepository {
 
     this.transactions[transactionFound] = transactionChanged;
     const transaction = this.transactions.find(t => t.id === id);
-    return transaction || null;
+    const transactionMapped = new TransactionEntity(
+      transaction?.id as string,
+      transaction?.title as string,
+      new TransactionTypeEntity(String(transaction?.type)),
+      new TransactionValueEntity(Number(transaction?.value)),
+      transaction?.category as string,
+      transaction?.created_at as Date,
+      transaction?.updated_at as Date,
+      transaction?.user_id as string,
+    );
+    return transactionMapped || null;
   }
 
   async delete(id: string): Promise<boolean> {
